@@ -1,11 +1,17 @@
 package training;
+import javax.swing.*;
 
 public class GUI {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Test myTest = new Test();
-        System.out.println(myTest.getX());
+		JFrame frame = new JFrame("My first GUI");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(300,300);
+		JButton button = new JButton("Press");
+		frame.getContentPane().add(button);
+		frame.setVisible(true);
+	
 	}
 
 }
