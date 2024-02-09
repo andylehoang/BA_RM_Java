@@ -1,18 +1,34 @@
 package application;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+
+import java.io.IOException;
 import java.util.*;
 
 public class MainSceneController {
+	// ---------------Logic Attribute------------//
 	private static Verwaltung myVerwaltung = new Verwaltung();
+	
+	// --------------- fx_ids -------------------//
+	
+	// Main Scene:
 	@FXML
 	private Button gesamtkorb;
 	@FXML
 	private Button korb_anlegen;
+	
+	//----------------Events---------------//
+	
+	// Main Scene: 
 
 	// Event Listener on Button[#gesamtkorb].onAction
 	@FXML
@@ -21,8 +37,17 @@ public class MainSceneController {
 	}
 	// Event Listener on Button[#korb_anlegen].onAction
 	@FXML
-	public void neuWarenkorbErstellen(ActionEvent event) {
-		myVerwaltung.addWarenkorb(new Warenkorb());
+	public void neuWarenkorbErstellen(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("KategorieAuswahl.fxml"));
+		Parent root = loader.load();
+		KategorieAuswahlController controller = loader.getController();
 		
+		Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+		
+		myVerwaltung.addWarenkorb(controller.getWarenkorb());	
 	}
+	
 }

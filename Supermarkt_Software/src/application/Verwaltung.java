@@ -12,9 +12,9 @@ public class Verwaltung {
     	Warenkorben = FXCollections.observableArrayList();
     	Warenkorben.addListener(new ListChangeListener<Warenkorb>() {
     		  public void onChanged(Change<? extends Warenkorb> c) {
-    			 ArrayList<Integer> i = new ArrayList<Integer>();
+    			 ArrayList<String> i = new ArrayList<String>();
     		    for(Warenkorb w:Warenkorben) {
-    		    	i.add(w.getID());
+    		    	i.add(w.getKategorie()+ w.getID());
     		    }
     		    System.out.println(i);	
     		  }
