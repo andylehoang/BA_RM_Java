@@ -31,4 +31,8 @@ public class Verwaltung {
     public ArrayList<String> getGlobalValue(){
     	return this.globalValue;
     }
+    
+    public ObservableList<Warenkorb> getWarenkorben(){
+    	return this.Warenkorben;
+    }
    }

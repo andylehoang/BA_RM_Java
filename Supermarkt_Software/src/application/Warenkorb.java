@@ -52,7 +52,7 @@ public class Warenkorb {
 	   			default: break;
 		    }
 		   }
-		   this.id *= 10;
+		   
 	   }
 	   	    
    }
@@ -66,4 +66,18 @@ public class Warenkorb {
     public String getKategorie() {
     	return this.Kategorie;
     }
+    
+    public double getWert() {
+    	//Die Preise im Warenkorb zusammenaddieren
+    	double value = 0.0;
+    	this.Wert = value;
+    	return this.Wert;
+    	
+    }
+    
+    @Override
+    public String toString() {
+    	return (this.Geschenke == 0)? this.id+". "+this.Kategorie : this.id+". "+this.Kategorie+ "_" + this.Geschenke ;
+    }
+    
 }

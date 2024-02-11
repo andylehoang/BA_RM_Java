@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -18,6 +19,7 @@ import java.util.*;
 public class MainSceneController {
 	// ---------------Logic Attribute------------//
 	private Verwaltung myVerwaltung;
+	private Warenkorb selectedWarenkorb;
 	
 	// --------------- fx_ids -------------------//
 	
@@ -28,11 +30,13 @@ public class MainSceneController {
 	private Button korb_anlegen;
 	@FXML
 	private VBox displayBox;
+	@FXML
+	private ChoiceBox<Warenkorb> cbWarenkorb;
+	
 	
 	
 	//----------------Events---------------//
-	
-	// Main Scene: 
+
 
 	// Event Listener on Button[#gesamtkorb].onAction
 	@FXML
@@ -52,13 +56,30 @@ public class MainSceneController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(new Scene(root));
         stage.showAndWait();
-		if(controller.getWarenkorb()!= null) myVerwaltung.addWarenkorb(controller.getWarenkorb()) ;
+		if(controller.getWarenkorb()!= null) {
+			myVerwaltung.addWarenkorb(controller.getWarenkorb());
+			cbWarenkorb.getItems().add(controller.getWarenkorb());
+		} 
 			
+	}
+	@FXML
+	public void selectWarenkorb(ActionEvent event) {
+		int selectedIndex = cbWarenkorb.getSelectionModel().getSelectedIndex();
+		int index = (selectedIndex < 0) ? 0: selectedIndex;
+		this.selectedWarenkorb = myVerwaltung.getWarenkorben().get(index);
+	    
+
+	    System.out.println("Selection made: [" + index + "] " + this.selectedWarenkorb);
 	}
 	
 	@FXML
 	public void initialize () {
 		myVerwaltung = new Verwaltung();
+		myVerwaltung.addWarenkorb(new Warenkorb("Standard",0));
+		cbWarenkorb.getItems().addAll(myVerwaltung.getWarenkorben());
+		cbWarenkorb.setValue(myVerwaltung.getWarenkorben().get(0));
+		
+		
 	}
 	
 }
