@@ -2,19 +2,20 @@ package application;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
-import java.util.*;
 
 public class MainSceneController {
 	// ---------------Logic Attribute------------//
@@ -29,7 +30,7 @@ public class MainSceneController {
 	@FXML
 	private Button korb_anlegen;
 	@FXML
-	private VBox displayBox;
+	private GridPane displayBox;
 	@FXML
 	private ChoiceBox<Warenkorb> cbWarenkorb;
 	
@@ -72,12 +73,43 @@ public class MainSceneController {
 	    System.out.println("Selection made: [" + index + "] " + this.selectedWarenkorb);
 	}
 	
+	public void displayWaren() {
+		String number = "3";
+		//ObservableList<VBox> stuff = FXCollections.observableArrayList();
+		for(int i = 1; i<=12; i++) {
+			VBox box = new VBox();
+			Label name = new Label("Hello"+i);
+			Label price = new Label(number+" €");
+			Button button1 = new Button("ADD");
+			box.getChildren().addAll(name,price,button1);
+			int[] koordinate = this.getCoordinates(i);
+			displayBox.add(box, koordinate[1], koordinate[0]);
+		}
+					
+	}
+	
+	public int[] getCoordinates(int sum) {
+		int[] koordinate = {0,0};
+		if(sum<=4) {
+			koordinate[0] = 0;
+			koordinate[1] = sum - 1;
+		} else if(sum<=8) {
+			koordinate[0] = 1;
+			koordinate[1] = sum - 5;
+		}else {
+			koordinate[0] = 2;
+			koordinate[1] = sum - 9;
+		}
+		return koordinate;
+	}
+	
 	@FXML
 	public void initialize () {
 		myVerwaltung = new Verwaltung();
 		myVerwaltung.addWarenkorb(new Warenkorb("Standard",0));
 		cbWarenkorb.getItems().addAll(myVerwaltung.getWarenkorben());
 		cbWarenkorb.setValue(myVerwaltung.getWarenkorben().get(0));
+		displayWaren();
 		
 		
 	}

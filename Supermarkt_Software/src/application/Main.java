@@ -27,10 +27,6 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		Lebensmittel a = new Lebensmittel("Mineralwasser", 0.4, 0.89, "13-01-2024");
-		System.out.println(a.getId());
-		Sonstige b = new Sonstige("DVD",1.2 ,3.4, 18);
-		System.out.println(b.getId());
 		launch(args);
 	}
 }

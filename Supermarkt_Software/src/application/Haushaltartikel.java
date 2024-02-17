@@ -1,9 +1,9 @@
 package application;
 
 public class Haushaltartikel extends Waren{
-	private String[] recylingAnteil;
+	private int recylingAnteil;
 	
-    public Haushaltartikel(String name, double EK, double VK, String[] anteile) {
+    public Haushaltartikel(String name, double EK, double VK, int anteile) {
     	super(name,EK,VK);
     	this.recylingAnteil = anteile;
     }
