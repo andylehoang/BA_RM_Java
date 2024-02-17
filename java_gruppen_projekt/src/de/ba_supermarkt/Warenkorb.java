@@ -5,57 +5,28 @@ import java.util.Arrays;
 
 public class Warenkorb {
 	private static int counter = 0;
-	   private ArrayList<String> waren;
+	   private ArrayList<Waren> myWaren;
 	   private double Wert;
 	   private String Kategorie;
 	   private int Geschenke;
 	   private int id;
-	   public Warenkorb(String kategorie, int geschenke) {
+	   
+	   
+	   public Warenkorb(String kategorie) {
 		   this.id = ++counter;
-		   this.waren = new ArrayList<String>();
+		   this.myWaren = new ArrayList<Waren>();
 		   this.Wert = 0.0;
-		   this.setKategorie(kategorie);
-		   this.Geschenke = geschenke;
-		   
-		   if(this.Geschenke != 0) {
-		    if(this.Geschenke == 10) {
-		    	 switch (this.Kategorie) {
-		   			case "U18" : waren = new ArrayList<String>(Arrays.asList(new String[] {"One"}));
-		   				break;
-		   			case "Spar-Korb": waren = new ArrayList<String>(Arrays.asList(new String[] {"Two"}));
-						break;
-		   			case "Mitarbeiterkaufprogramm" : waren = new ArrayList<String>(Arrays.asList(new String[] {"Three"}));
-		   			    break;
-		   			case "Öko Prinzip": waren = new ArrayList<String>(Arrays.asList(new String[] {"Four"}));
-		   			default: break;
-		        }
-			   } else if(this.Geschenke == 20) {
-				   switch (this.Kategorie) {
-		   			case "U18" : waren = new ArrayList<String>(Arrays.asList(new String[] {"Eleven"}));
-		   				break;
-		   			case "Spar-Korb": waren = new ArrayList<String>(Arrays.asList(new String[] {"Twelve"}));
-						break;
-		   			case "Mitarbeiterkaufprogramm" : waren = new ArrayList<String>(Arrays.asList(new String[] {"Thirteen"}));
-		   			    break;
-		   			case "Öko Prinzip": waren = new ArrayList<String>(Arrays.asList(new String[] {"Fourteen"}));
-		   			default: break;
-		        }
-			   } else {
-				   switch (this.Kategorie) {
-		   			case "U18" : waren = new ArrayList<String>(Arrays.asList(new String[] {"Twenty-One"}));
-		   				break;
-		   			case "Spar-Korb": waren = new ArrayList<String>(Arrays.asList(new String[] {"Twenty-Two"}));
-						break;
-		   			case "Mitarbeiterkaufprogramm" : waren = new ArrayList<String>(Arrays.asList(new String[] {"Twenty-Three"}));
-		   			    break;
-		   			case "Öko Prinzip": waren = new ArrayList<String>(Arrays.asList(new String[] {"Tweenty Four"}));
-		   			default: break;
-			    }
-			   }
-			   
-		   }
-		   	    
+		   this.setKategorie(kategorie);  	    
 	   }
+	   public Warenkorb(String kategorie, ArrayList<Waren> warenGeschenk) {
+		   this.id = ++counter;
+		   this.setKategorie(kategorie);
+		   this.Wert = 0.0;
+		   this.myWaren = warenGeschenk;
+		   
+	   }
+	   
+	   
 	   public int getID() {
 		   return this.id;
 	   }
@@ -67,16 +38,29 @@ public class Warenkorb {
 	    	return this.Kategorie;
 	    }
 	    
+	    public ArrayList<Waren> getMeineWaren(){
+	    	return this.myWaren;
+	    }
+	    
 	    public double getWert() {
 	    	//Die Preise im Warenkorb zusammenaddieren
 	    	double value = 0.0;
+	    	for(Waren ware: myWaren) {
+	    		value += (this.Kategorie.equalsIgnoreCase("Mitarbeiterprogramm"))? ware.getEK(): ware.getVK();
+	    	}
 	    	this.Wert = value;
 	    	return this.Wert;
 	    	
+	    }
+	    
+	    public void setWert(double wert) {
+	    	this.Wert = wert;
 	    }
 	    
 	    @Override
 	    public String toString() {
 	    	return (this.Geschenke == 0)? this.id+". "+this.Kategorie : this.id+". "+this.Kategorie+ "_" + this.Geschenke ;
 	    }
+	    
+	    
 }

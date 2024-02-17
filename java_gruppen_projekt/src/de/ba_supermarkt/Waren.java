@@ -15,4 +15,21 @@ public class Waren {
     public int getId() {
     	return this.id;
     }
+    
+    public double getEK() {
+    	return this.einkaufPreis;
+    }
+    
+    public double getVK() {
+    	return this.verkaufPreis;
+    }
+    
+    public String getName() {
+    	return this.name;
+    }
+    
+    @Override
+    public String toString() {
+    	return this.getId() + "." + this.getName();
+    }
 }
