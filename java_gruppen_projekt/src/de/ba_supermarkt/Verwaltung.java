@@ -16,7 +16,7 @@ public class Verwaltung {
    
    public Verwaltung() {
 	   this.Warenkorben = new ArrayList<Warenkorb>();
-	   this.meineWaren= this.warenEinfuegen();
+	   this.meineWaren= this.lagerAuffuellen();
 	   this.tagesAusgabe = 0.0;
 	   
 	   //Add Proxy to test
@@ -29,11 +29,11 @@ public class Verwaltung {
    public void addWarenkorb(String kategorie, double geschenkBetrag) {
 	   if(geschenkBetrag == 0) {
 		   this.Warenkorben.add(new Warenkorb(kategorie));
-		   //this.setWarenkorb(this.Warenkorben.get(this.Warenkorben.size()-1));
+		   this.setWarenkorb(this.Warenkorben.size()-1);
 	   } else {
-		   this.Warenkorben.add(new Warenkorb(kategorie,this.generateGeschenkListe(kategorie, geschenkBetrag)));
+		   this.Warenkorben.add(new Warenkorb(kategorie,this.generateGeschenkListe(kategorie, geschenkBetrag),geschenkBetrag));
 	   }
-	   this.setWarenkorb(this.Warenkorben.get(this.Warenkorben.size()-1));   
+	     
    }
    
    public ArrayList<Waren> generateGeschenkListe(String kategorie, double summeBetrag) {
@@ -41,6 +41,15 @@ public class Verwaltung {
 	   ArrayList<Waren> GeschenkList = new ArrayList<Waren>();
 	   while(betrag >= 0) {
 		   for(Waren ware : meineWaren) {
+			   if(kategorie.equalsIgnoreCase("Öko-Prinzip")) {
+				   if(ware.getName().equalsIgnoreCase("Plastikbesteck") || ware.getName().equalsIgnoreCase("Wurst")) {
+					   continue;
+				   }
+			   } else if(kategorie.equalsIgnoreCase("U18")) {
+				   if(ware.getName().equalsIgnoreCase("Flasche Wein") || ware.getName().equalsIgnoreCase("DVD Actionfilm")) {
+					   continue;
+				   }
+			   }
 			   double delta = (kategorie.equalsIgnoreCase("Mitarbeiterprogramm"))? betrag - ware.getEK(): betrag - ware.getVK();
 			   if(delta > 0) {
 				   GeschenkList.add(ware);
@@ -93,7 +102,7 @@ public class Verwaltung {
    
    
    
-   public ArrayList<Waren> warenEinfuegen() {
+   public ArrayList<Waren> lagerAuffuellen() {
 	   ArrayList<Waren> meineWaren = new ArrayList<Waren>();
        ArrayList<String[]> daten = this.readCSV();
        String Lebensmittel = "Lebensmittel";
@@ -130,7 +139,34 @@ public class Verwaltung {
 
        }
        return meineWaren;
-   } 
+   }
+   
+   
+   public void warenEinfuegen(int id) {
+	   boolean status = true;
+	   Waren pickedItem = this.getMeineWaren().get(id-1);
+	   if(this.ausgewaehlteWarenkorb.getKategorie().equalsIgnoreCase("Öko-Prinzip")) {
+		   if(pickedItem.getName().equalsIgnoreCase("Plastikbesteck") && pickedItem.getName().equalsIgnoreCase("Wurst")) {
+			   status = false;   
+		   } 
+	   }else if(this.ausgewaehlteWarenkorb.getKategorie().equalsIgnoreCase("U18")){
+		   if(pickedItem.getName().equalsIgnoreCase("Flasche Wein") && pickedItem.getName().equalsIgnoreCase("DVD Actionfilm")) {
+			   status = false;   
+		   } 
+	   }else if(this.ausgewaehlteWarenkorb.getKategorie().equalsIgnoreCase("Spar-Korb")){
+		   if(this.ausgewaehlteWarenkorb.getWert()+pickedItem.getVK() > 50) {
+			   status = false;   
+		   } 
+	   }
+	   
+	   if(status) {
+		   this.getAusgewaehlteWarenkorb().getMeineWaren().add(pickedItem);
+		   System.out.println(pickedItem.getName()+ " has been added to " + this.getAusgewaehlteWarenkorb());
+		   System.out.println("\n \n \n \n");
+	   } else {
+		   System.out.println("Item is not suitable for categorie:" + this.ausgewaehlteWarenkorb.getKategorie());
+	   }
+   }
    
    
    
@@ -142,12 +178,15 @@ public class Verwaltung {
 	   return this.ausgewaehlteWarenkorb;
    }
    
-  public void setWarenkorb(Warenkorb warenkorb) {
-	  this.ausgewaehlteWarenkorb = warenkorb;
+  public void setWarenkorb(int index) {
+	  this.ausgewaehlteWarenkorb = this.Warenkorben.get(index);
   }
   
   public ArrayList<Waren> getMeineWaren(){
 	  return this.meineWaren;
+  }
+  public Warenkorb getLast() {
+	  return this.Warenkorben.get(this.Warenkorben.size()-1);
   }
     
 }

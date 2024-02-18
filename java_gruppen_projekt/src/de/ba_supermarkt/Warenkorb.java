@@ -1,14 +1,13 @@
 package de.ba_supermarkt;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Warenkorb {
 	private static int counter = 0;
 	   private ArrayList<Waren> myWaren;
 	   private double Wert;
 	   private String Kategorie;
-	   private int Geschenke;
+	   private boolean Geschenke;
 	   private int id;
 	   
 	   
@@ -18,11 +17,12 @@ public class Warenkorb {
 		   this.Wert = 0.0;
 		   this.setKategorie(kategorie);  	    
 	   }
-	   public Warenkorb(String kategorie, ArrayList<Waren> warenGeschenk) {
+	   public Warenkorb(String kategorie, ArrayList<Waren> warenGeschenk, double betrag) {
 		   this.id = ++counter;
 		   this.setKategorie(kategorie);
-		   this.Wert = 0.0;
+		   this.Wert = betrag;
 		   this.myWaren = warenGeschenk;
+		   this.Geschenke = true;
 		   
 	   }
 	   
@@ -44,23 +44,23 @@ public class Warenkorb {
 	    
 	    public double getWert() {
 	    	//Die Preise im Warenkorb zusammenaddieren
-	    	double value = 0.0;
-	    	for(Waren ware: myWaren) {
-	    		value += (this.Kategorie.equalsIgnoreCase("Mitarbeiterprogramm"))? ware.getEK(): ware.getVK();
-	    	}
-	    	this.Wert = value;
+            if(!this.Geschenke) {
+            	double value = 0.0;
+    	    	for(Waren ware: myWaren) {
+    	    		value += (this.Kategorie.equalsIgnoreCase("Mitarbeiterprogramm"))? ware.getEK(): ware.getVK();
+    	    	}
+    	    	this.Wert = value;
+            }
 	    	return this.Wert;
 	    	
 	    }
 	    
-	    public void setWert(double wert) {
-	    	this.Wert = wert;
-	    }
 	    
 	    @Override
 	    public String toString() {
-	    	return (this.Geschenke == 0)? this.id+". "+this.Kategorie : this.id+". "+this.Kategorie+ "_" + this.Geschenke ;
+	    	return (!this.Geschenke)? this.id+". "+this.Kategorie : this.id+". "+this.Kategorie+ "_" + (int)this.Wert ;
 	    }
+	    
 	    
 	    
 }

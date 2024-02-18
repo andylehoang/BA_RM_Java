@@ -16,36 +16,41 @@ public class Main {
 		System.out.println("Welcome to BA Supermarket");
 		
 		
-	  do {
-	    try {
+		while(!exit){
+	      try {
+	    		printProduct();
 	    		printMenu();
 	    	    String input = sc.next();
 	    	   //Check if input is valid
-	    	    while(!input.equalsIgnoreCase("a") && !input.equalsIgnoreCase("c") && !input.equalsIgnoreCase("v") && !input.equalsIgnoreCase("g") && !input.equalsIgnoreCase("e") && !input.equalsIgnoreCase("b")) {
+	    	    while(!input.equalsIgnoreCase("a") && !input.equalsIgnoreCase("c") && !input.equalsIgnoreCase("v") && !input.equalsIgnoreCase("g") && !input.equalsIgnoreCase("e") && !input.equalsIgnoreCase("b") && !input.equalsIgnoreCase("p")) {
 	    	    	System.out.println("Wrong input. Please try again");
-	    	    	printMenu();
 	    	    	input = sc.next();
 	    	    }
 	    	    //Check if user want to exit
 		          if(input.equalsIgnoreCase("a")) {
 		        	  menuAddWarenkorb();
-		        	  System.out.println("Info from cart: " + myVerwaltung.getAusgewaehlteWarenkorb());
-		        	  System.out.println(myVerwaltung.getAusgewaehlteWarenkorb().getMeineWaren());
-		          } else if(input.equalsIgnoreCase("g")) {
-		        	 
-		          } else {
+		          } else if(input.equalsIgnoreCase("b")) {
+		        	 warenKaufen();
+		          } else if(input.equalsIgnoreCase("c")){
+		        	  warenkorbWechseln();
+		          } else if(input.equalsIgnoreCase("v")){
+		        	  viewAllWarenkorben();
+		       	      System.out.println("[R]eturn");
+		       	      input = sc.next();
+		       	      while(!input.equalsIgnoreCase("r")) {
+		       		    System.out.println("Wrong input");
+		       		    input = sc.next();
+		       	      }
+		          }else {
 		        	  exit = true;
-		          }
-		    
-	    	    System.out.println(input);
+		          }  
 		    } catch (InputMismatchException e) {
+	           sc.next();
 		    	System.out.println("Wrong input type");
 		    	System.out.println("Process Canceled \n \n");
-		    	sc.next();
-		    	
 		    }
 	    	
-	    } while(!exit);
+	    } 
 	    
 	    System.out.print("Exited");
 	}
@@ -58,10 +63,32 @@ public class Main {
 	
 	
 	public static void printMenu() {
-		System.out.println("-------------");
-		System.out.println("Function menu: [A]dd new Cart | [C]hange cart; | [V]iew all cart | [G]rab information of current cart | [E]xit | [B]uy" );
-		System.out.println("-------------");
-			
+		System.out.println("-----------------------------------------------------");
+		System.out.println("Current cart: " + myVerwaltung.getAusgewaehlteWarenkorb());
+		System.out.println("-----------------------------------------------------");
+		System.out.println("Function menu: [A]dd new Cart | [C]hange cart; | [V]iew all cart | [G]rab information of current cart | [E]xit | [B]uy | [P]ay" );
+		System.out.println("-----------------------------------------------------");		
+	}
+	
+	public static void printProduct() {
+		System.out.println("| ID |          Name         | Preis");
+		System.out.println("------------------------------------");
+		String line = "";
+		for (Waren ware: myVerwaltung.getMeineWaren()) {
+			// Offset for ID
+			line += "| "+ ware.getId() ;
+			line += (ware.getId() < 10) ? "  ": " ";
+			// Offset for Name
+			line += "|   "+ ware.getName();
+			for(int i = 0; i<= 19 - ware.getName().length(); i++) {
+				line += " ";
+			}
+			//Offset for Preis
+			line += "| ";
+			line += (myVerwaltung.getAusgewaehlteWarenkorb().getKategorie().equalsIgnoreCase("Mitarbeiterprogramm"))? ware.getEK(): ware.getVK();
+			line += "\n";
+		}
+	   System.out.print(line);
 	}
 	
 	
@@ -84,7 +111,7 @@ public class Main {
 		} else if(kategorie.equalsIgnoreCase("U")){
 			kategorie = "U18";
 		} else if(kategorie.equalsIgnoreCase("O")){
-			kategorie = "Öko Prinzip";
+			kategorie = "Öko-Prinzip";
 		} else {
 			kategorie = "Standard";
 		}
@@ -109,10 +136,53 @@ public class Main {
 	 	    }
 		}
 		//Warenkorb einfügen
-		myVerwaltung.addWarenkorb(kategorie, geschenkBetrag);
-		
+		myVerwaltung.addWarenkorb(kategorie, geschenkBetrag);	
 	}
 	
+	public static void warenKaufen() {
+		int ware_id = 0;
+		System.out.println("Please choose the id of the item that you want to buy");
+		ware_id = sc.nextInt();
+		while(ware_id > 12 || ware_id < 1) {
+			System.out.println("Wrong input. Please try again");
+			ware_id = sc.nextInt();
+		}
+		myVerwaltung.warenEinfuegen(ware_id);
+	}
+	
+	public static void viewAllWarenkorben() {
+		System.out.println("| ID |        Kategorie       | Gesamtwert");
+		System.out.println("-------------------------------------------");
+		String line = "";
+		for (Warenkorb korb: myVerwaltung.getWarbenkorben()) {
+			// Offset for ID
+			line += "| "+ korb.getID() ;
+			line += (korb.getID()<10) ? "  ": " ";
+			// Offset for Name
+			line += "|   "+ korb.getKategorie();
+			for(int i = 0; i<= 20 - korb.getKategorie().length(); i++) {
+				line += " ";
+			}
+			//Offset for Preis
+			line += "|   "+ korb.getWert() + "\n";
+		}
+		System.out.print(line);
+	}
+	
+	public static void warenkorbWechseln() {
+		viewAllWarenkorben();
+		System.out.println("Please choose which the index for the cart that you want");
+		int index = sc.nextInt();
+		while(index< 0 || index>myVerwaltung.getWarbenkorben().size()) {
+			System.out.println("Wrong input. Please try again");
+			index = sc.nextInt();
+		}
+		myVerwaltung.setWarenkorb(index-1);
+	}
+	
+	public void bezahlen() {
+		
+	}
 
 
 }
