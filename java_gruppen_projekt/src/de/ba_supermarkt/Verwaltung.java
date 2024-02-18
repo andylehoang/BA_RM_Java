@@ -9,7 +9,7 @@ public class Verwaltung {
    private ArrayList<Warenkorb> Warenkorben;
    private ArrayList<Waren> meineWaren;
    private Warenkorb ausgewaehlteWarenkorb;
-   private double tagesAusgabe;
+   private static double tagesAusgabe = 0;
    
    
 
@@ -17,7 +17,6 @@ public class Verwaltung {
    public Verwaltung() {
 	   this.Warenkorben = new ArrayList<Warenkorb>();
 	   this.meineWaren= this.lagerAuffuellen();
-	   this.tagesAusgabe = 0.0;
 	   
 	   //Add Proxy to test
 	  
@@ -168,10 +167,33 @@ public class Verwaltung {
 	   }
    }
    
+   public void bezahlenLogik(int index) {
+	   double warenkorbSumme = this.Warenkorben.get(index).getWert();
+	   if(warenkorbSumme != 0) {
+		   tagesAusgabe += warenkorbSumme;
+		   this.warenkorbEntfernen(index);
+	   } else {
+		   System.out.println("There is nothing to pay for");
+	   }
+   }
+   
+   public void warenkorbEntfernen(int index) {
+	   this.Warenkorben.remove(index);
+	   if(this.Warenkorben.isEmpty()) {
+		   this.addWarenkorb("Standard", 0);
+	   } else {
+		   this.setWarenkorb(0);
+	   }
+   }
+   
+   public void warenEntfernen(int warenkorb_id, Waren ware ) {
+	   // remove the product from the array
+   }
+   
    
    
    public double getTagesAusgabe(){
-	   return this.tagesAusgabe;
+	   return tagesAusgabe;
    }
    
    public Warenkorb getAusgewaehlteWarenkorb() {

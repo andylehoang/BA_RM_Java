@@ -1,5 +1,6 @@
 package de.ba_supermarkt;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class Warenkorb {
@@ -9,6 +10,8 @@ public class Warenkorb {
 	   private String Kategorie;
 	   private boolean Geschenke;
 	   private int id;
+	   
+	   
 	   
 	   
 	   public Warenkorb(String kategorie) {
@@ -60,6 +63,50 @@ public class Warenkorb {
 	    public String toString() {
 	    	return (!this.Geschenke)? this.id+". "+this.Kategorie : this.id+". "+this.Kategorie+ "_" + (int)this.Wert ;
 	    }
+	    
+	    public void getLaegsteMindesthaltbarkeitsdatum()  {
+	    	long htage = -1;
+	    	int index = -1;
+	    	for(Waren ware: this.myWaren) {
+	    		if(ware instanceof Lebensmittel) {
+	    			try {
+						if(((Lebensmittel) ware).duration() >= htage) {
+							htage = ((Lebensmittel) ware).duration();
+							index = this.myWaren.indexOf(ware);
+						}
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} 
+	    		} 
+	    	}
+	    	
+	    	if(htage != -1 && index != -1 ) {
+	    		System.out.println("Längste Mindesthaltbarkeitsdatum: " + htage + "| Produkt : " + this.myWaren.get(index));
+	    	}
+	    }
+	    
+	    public void getGeringsteRecyclingAnteil() {
+	    	int anteile = 10000;
+	    	int index = -1;
+	    	for(Waren ware: this.myWaren) {
+	    		if(ware instanceof Haushaltartikel) {
+	    			if(((Haushaltartikel)ware).getRecylingAnteile() <= anteile) {
+						anteile = ((Haushaltartikel)ware).getRecylingAnteile();
+						index = this.myWaren.indexOf(ware);
+					} 
+	    		} 
+	    	}
+	    	
+	    	if(anteile != 10000 && index != -1 ) {
+	    		System.out.println("geringste Recyclinganteile: " + anteile + "| Produkt : " + this.myWaren.get(index));
+	    	}
+	    	
+	    }
+	    
+	   
+	    
+	    
 	    
 	    
 	    

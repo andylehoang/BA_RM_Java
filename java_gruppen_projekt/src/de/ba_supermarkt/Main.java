@@ -41,6 +41,10 @@ public class Main {
 		       		    System.out.println("Wrong input");
 		       		    input = sc.next();
 		       	      }
+		          }else if(input.equalsIgnoreCase("p")){
+		        	  bezahlen();
+		          }else if(input.equalsIgnoreCase("g")){
+		        	  ausgewaehlteWarenkorbGreifen();
 		          }else {
 		        	  exit = true;
 		          }  
@@ -154,17 +158,17 @@ public class Main {
 		System.out.println("| ID |        Kategorie       | Gesamtwert");
 		System.out.println("-------------------------------------------");
 		String line = "";
-		for (Warenkorb korb: myVerwaltung.getWarbenkorben()) {
+		for (int i = 0; i< myVerwaltung.getWarbenkorben().size(); i++) {
 			// Offset for ID
-			line += "| "+ korb.getID() ;
-			line += (korb.getID()<10) ? "  ": " ";
+			line += "| "+ (i+1) ;
+			line += ((i+1)<10) ? "  ": " ";
 			// Offset for Name
-			line += "|   "+ korb.getKategorie();
-			for(int i = 0; i<= 20 - korb.getKategorie().length(); i++) {
+			line += "|   "+ myVerwaltung.getWarbenkorben().get(i).getKategorie();
+			for (int x = 0; x <= 20 - myVerwaltung.getWarbenkorben().get(i).getKategorie().length(); x++) {
 				line += " ";
 			}
 			//Offset for Preis
-			line += "|   "+ korb.getWert() + "\n";
+			line += "|   "+ myVerwaltung.getWarbenkorben().get(i).getWert() + "\n";
 		}
 		System.out.print(line);
 	}
@@ -180,8 +184,21 @@ public class Main {
 		myVerwaltung.setWarenkorb(index-1);
 	}
 	
-	public void bezahlen() {
-		
+	public static void bezahlen() {
+		viewAllWarenkorben();
+		System.out.println("Which cart do you want to pay for? Please select the ID of the cart");
+		int warenkorb_id = sc.nextInt();
+		while(warenkorb_id < 1 || warenkorb_id > myVerwaltung.getWarbenkorben().size()) {
+			System.out.println("Wrong input. Please try again");
+			warenkorb_id = sc.nextInt();
+		}
+		myVerwaltung.bezahlenLogik(warenkorb_id-1);
+	}
+	
+	public static void ausgewaehlteWarenkorbGreifen() {
+		Warenkorb auswahl = myVerwaltung.getAusgewaehlteWarenkorb();
+		auswahl.getLaegsteMindesthaltbarkeitsdatum();
+		auswahl.getGeringsteRecyclingAnteil();
 	}
 
 

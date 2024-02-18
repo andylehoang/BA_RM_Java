@@ -30,6 +30,6 @@ public class Waren {
     
     @Override
     public String toString() {
-    	return this.getId() + "." + this.getName();
+    	return this.getName();
     }
 }

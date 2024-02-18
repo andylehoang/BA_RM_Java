@@ -24,13 +24,7 @@ public class Lebensmittel extends Waren{
         LocalDate date = LocalDate.parse(this.mindesthaltbarkeitDatum, formatter);
 
         // Subtract the parsed date from the current date and time
-        delta = ChronoUnit.DAYS.between(date, now.toLocalDate());
-
-        // Output the result
-        System.out.println("Current date and time: " + now);
-        System.out.println("Parsed date: " + date);
-        System.out.println("Subtracted date: " + delta);
-		
+        delta = ChronoUnit.DAYS.between(now.toLocalDate(),date);		
 		return delta;
 		
 	}
