@@ -141,15 +141,15 @@ public class Verwaltung {
    }
    
    
-   public void warenEinfuegen(int id) {
+   public boolean warenEinfuegen(int id) {
 	   boolean status = true;
-	   Waren pickedItem = this.getMeineWaren().get(id-1);
+	   Waren pickedItem = this.getMeineWaren().get(id);
 	   if(this.ausgewaehlteWarenkorb.getKategorie().equalsIgnoreCase("Öko-Prinzip")) {
-		   if(pickedItem.getName().equalsIgnoreCase("Plastikbesteck") && pickedItem.getName().equalsIgnoreCase("Wurst")) {
+		   if(pickedItem.getName().equalsIgnoreCase("Plastikbesteck") || pickedItem.getName().equalsIgnoreCase("Wurst")) {
 			   status = false;   
 		   } 
 	   }else if(this.ausgewaehlteWarenkorb.getKategorie().equalsIgnoreCase("U18")){
-		   if(pickedItem.getName().equalsIgnoreCase("Flasche Wein") && pickedItem.getName().equalsIgnoreCase("DVD Actionfilm")) {
+		   if(pickedItem.getName().equalsIgnoreCase("Flasche Wein") || pickedItem.getName().equalsIgnoreCase("DVD Actionfilm")) {
 			   status = false;   
 		   } 
 	   }else if(this.ausgewaehlteWarenkorb.getKategorie().equalsIgnoreCase("Spar-Korb")){
@@ -160,20 +160,19 @@ public class Verwaltung {
 	   
 	   if(status) {
 		   this.getAusgewaehlteWarenkorb().getMeineWaren().add(pickedItem);
-		   System.out.println(pickedItem.getName()+ " has been added to " + this.getAusgewaehlteWarenkorb());
-		   System.out.println("\n \n \n \n");
-	   } else {
-		   System.out.println("Item is not suitable for categorie:" + this.ausgewaehlteWarenkorb.getKategorie());
-	   }
+		   
+	   } 
+	   return status;
    }
    
-   public void bezahlenLogik(int index) {
+   public boolean bezahlenLogik(int index) {
 	   double warenkorbSumme = this.Warenkorben.get(index).getWert();
 	   if(warenkorbSumme != 0) {
 		   tagesAusgabe += warenkorbSumme;
 		   this.warenkorbEntfernen(index);
+		   return true;
 	   } else {
-		   System.out.println("There is nothing to pay for");
+		   return false;
 	   }
    }
    
@@ -186,8 +185,14 @@ public class Verwaltung {
 	   }
    }
    
-   public void warenEntfernen(int warenkorb_id, Waren ware ) {
+   public boolean warenEntfernen(int waren_id) {
 	   // remove the product from the array
+	   if(!this.ausgewaehlteWarenkorb.getMeineWaren().isEmpty()) {
+		   this.ausgewaehlteWarenkorb.warenEntfernen(waren_id);
+		   return true;
+	   } 
+	   return false;
+	   
    }
    
    

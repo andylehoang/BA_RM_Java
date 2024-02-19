@@ -54,7 +54,8 @@ public class Warenkorb {
     	    	}
     	    	this.Wert = value;
             }
-	    	return this.Wert;
+            double roundOff = Math.round(this.Wert * 100.0) / 100.0;
+	    	return roundOff;
 	    	
 	    }
 	    
@@ -102,6 +103,10 @@ public class Warenkorb {
 	    		System.out.println("geringste Recyclinganteile: " + anteile + "| Produkt : " + this.myWaren.get(index));
 	    	}
 	    	
+	    }
+	    
+	    public void warenEntfernen(int index) {
+	    	this.myWaren.remove(index);
 	    }
 	    
 	   

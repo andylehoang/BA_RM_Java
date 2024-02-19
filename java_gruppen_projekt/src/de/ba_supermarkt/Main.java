@@ -17,8 +17,9 @@ public class Main {
 		
 		
 		while(!exit){
-	      try {
-	    		printProduct();
+	      try { 
+	    	  
+	    		printProduct(myVerwaltung.getMeineWaren());
 	    		printMenu();
 	    	    String input = sc.next();
 	    	   //Check if input is valid
@@ -34,6 +35,7 @@ public class Main {
 		          } else if(input.equalsIgnoreCase("c")){
 		        	  warenkorbWechseln();
 		          } else if(input.equalsIgnoreCase("v")){
+		        	  clear();
 		        	  viewAllWarenkorben();
 		       	      System.out.println("[R]eturn");
 		       	      input = sc.next();
@@ -41,13 +43,14 @@ public class Main {
 		       		    System.out.println("Wrong input");
 		       		    input = sc.next();
 		       	      }
+		       	      clear();
 		          }else if(input.equalsIgnoreCase("p")){
 		        	  bezahlen();
 		          }else if(input.equalsIgnoreCase("g")){
 		        	  ausgewaehlteWarenkorbGreifen();
 		          }else {
 		        	  exit = true;
-		          }  
+		          }
 		    } catch (InputMismatchException e) {
 	           sc.next();
 		    	System.out.println("Wrong input type");
@@ -55,7 +58,8 @@ public class Main {
 		    }
 	    	
 	    } 
-	    
+		System.out.println("\n\n");
+	    System.out.println("Today you have sent " + myVerwaltung.getTagesAusgabe() + "€ in Total");
 	    System.out.print("Exited");
 	}
 	
@@ -74,14 +78,15 @@ public class Main {
 		System.out.println("-----------------------------------------------------");		
 	}
 	
-	public static void printProduct() {
+	public static void printProduct(ArrayList<Waren> warenList) {
 		System.out.println("| ID |          Name         | Preis");
 		System.out.println("------------------------------------");
 		String line = "";
-		for (Waren ware: myVerwaltung.getMeineWaren()) {
+		for (int y = 0; y < warenList.size(); y++) {
+			Waren ware= warenList.get(y);
 			// Offset for ID
-			line += "| "+ ware.getId() ;
-			line += (ware.getId() < 10) ? "  ": " ";
+			line += "| "+ (y+1) ;
+			line += ((y+1) < 10) ? "  ": " ";
 			// Offset for Name
 			line += "|   "+ ware.getName();
 			for(int i = 0; i<= 19 - ware.getName().length(); i++) {
@@ -126,7 +131,7 @@ public class Main {
 		//Prüfen ob die eingabe stimmt
 		 while(!option.equalsIgnoreCase("y") && !option.equalsIgnoreCase("n")) {
 	 	    	System.out.println("Wrong input. Please try again");
-	 	    	kategorie = sc.next();
+	 	    	option = sc.next();
 	 	    }
 		 // Code durchführen, wenn die eingabe = ja, es passiert nichts, wenn der Antwort nein ist.
 		if(option.equalsIgnoreCase("y")) {
@@ -140,18 +145,27 @@ public class Main {
 	 	    }
 		}
 		//Warenkorb einfügen
-		myVerwaltung.addWarenkorb(kategorie, geschenkBetrag);	
+		myVerwaltung.addWarenkorb(kategorie, geschenkBetrag);
+		clear();
+		System.out.println(myVerwaltung.getLast() + " has been added");
 	}
 	
 	public static void warenKaufen() {
+		
 		int ware_id = 0;
 		System.out.println("Please choose the id of the item that you want to buy");
 		ware_id = sc.nextInt();
-		while(ware_id > 12 || ware_id < 1) {
+		while(ware_id> 12 || ware_id < 1) {
 			System.out.println("Wrong input. Please try again");
 			ware_id = sc.nextInt();
 		}
-		myVerwaltung.warenEinfuegen(ware_id);
+		clear();
+		Waren pickedItem = myVerwaltung.getMeineWaren().get(ware_id-1);
+		if(myVerwaltung.warenEinfuegen(ware_id-1)) {
+			System.out.println(pickedItem.getName()+ " has been added to " + myVerwaltung.getAusgewaehlteWarenkorb());
+		}else {
+			System.out.println("Item is not suitable for categorie:" + myVerwaltung.getAusgewaehlteWarenkorb().getKategorie());
+		}
 	}
 	
 	public static void viewAllWarenkorben() {
@@ -182,9 +196,11 @@ public class Main {
 			index = sc.nextInt();
 		}
 		myVerwaltung.setWarenkorb(index-1);
+		clear();
 	}
 	
 	public static void bezahlen() {
+		clear();
 		viewAllWarenkorben();
 		System.out.println("Which cart do you want to pay for? Please select the ID of the cart");
 		int warenkorb_id = sc.nextInt();
@@ -192,13 +208,60 @@ public class Main {
 			System.out.println("Wrong input. Please try again");
 			warenkorb_id = sc.nextInt();
 		}
-		myVerwaltung.bezahlenLogik(warenkorb_id-1);
+		clear();
+		if(!myVerwaltung.bezahlenLogik(warenkorb_id-1)) {
+			System.out.println("There is nothing to pay for");
+		} else {
+			System.out.println("Payment successfull");
+		}
 	}
 	
 	public static void ausgewaehlteWarenkorbGreifen() {
+		clear();
 		Warenkorb auswahl = myVerwaltung.getAusgewaehlteWarenkorb();
+		System.out.println("Warbenkorb: " + auswahl+ "\n");
 		auswahl.getLaegsteMindesthaltbarkeitsdatum();
 		auswahl.getGeringsteRecyclingAnteil();
+		printProduct(auswahl.getMeineWaren());
+		System.out.println("\n Summe: "+ auswahl.getWert());
+		System.out.println("------------------------------------------");
+		System.out.println("Function menu: [E]xit | [R]emove | [P]ay" );
+		String option = sc.next();
+		 while(!option.equalsIgnoreCase("e") && !option.equalsIgnoreCase("p") && !option.equalsIgnoreCase("r")) {
+	 	    	System.out.println("Wrong input. Please try again");
+	 	    	option = sc.next();
+	 	    }
+		if(option.equalsIgnoreCase("p")) {
+			int index = myVerwaltung.getWarbenkorben().indexOf(auswahl);
+			clear();
+			if(!myVerwaltung.bezahlenLogik(index)) {
+				System.out.println("There is nothing to pay for");
+			} else {
+				System.out.println("Payment successfull");
+			}
+		} else if(option.equalsIgnoreCase("r")){
+				System.out.println("Please choose the index of the item that you would like to remove");
+				int index = sc.nextInt();
+				while((index< 0 || index>auswahl.getMeineWaren().size()) && !auswahl.getMeineWaren().isEmpty()) {
+					System.out.println("Wrong input. Please try again");
+					index = sc.nextInt();
+				}
+				clear();
+				if(myVerwaltung.warenEntfernen(index-1)) {
+					System.out.println("Item has been removed");
+				} else {
+					System.out.println("Cart is empty");
+				}	
+		} else {
+			clear();
+		}
+		
+	}
+	
+	public static void clear() {
+		for(int i = 0; i<=10; i++) {
+			System.out.println("\n");
+		}
 	}
 
 
