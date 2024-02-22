@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package de.ba_supermarkt;
 
 import java.io.BufferedReader;
@@ -5,15 +8,30 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Verwaltung.
+ */
 public class Verwaltung {
+   
+   /** The Warenkorben. */
    private ArrayList<Warenkorb> Warenkorben;
+   
+   /** The meine waren. */
    private ArrayList<Waren> meineWaren;
+   
+   /** The ausgewaehlte warenkorb. */
    private Warenkorb ausgewaehlteWarenkorb;
+   
+   /** The tages ausgabe. */
    private static double tagesAusgabe = 0;
    
    
 
    
+   /**
+    * Instantiates a new verwaltung.
+    */
    public Verwaltung() {
 	   this.Warenkorben = new ArrayList<Warenkorb>();
 	   this.meineWaren= this.lagerAuffuellen();
@@ -25,6 +43,12 @@ public class Verwaltung {
 	   this.addWarenkorb("Standard", 0);
    }
    
+   /**
+    * Adds the warenkorb.
+    *
+    * @param kategorie the kategorie
+    * @param geschenkBetrag the geschenk betrag
+    */
    public void addWarenkorb(String kategorie, double geschenkBetrag) {
 	   if(geschenkBetrag == 0) {
 		   this.Warenkorben.add(new Warenkorb(kategorie));
@@ -35,6 +59,13 @@ public class Verwaltung {
 	     
    }
    
+   /**
+    * Generate geschenk liste.
+    *
+    * @param kategorie the kategorie
+    * @param summeBetrag the summe betrag
+    * @return the array list
+    */
    public ArrayList<Waren> generateGeschenkListe(String kategorie, double summeBetrag) {
 	   double betrag = summeBetrag;
 	   ArrayList<Waren> GeschenkList = new ArrayList<Waren>();
@@ -62,16 +93,26 @@ public class Verwaltung {
    }
    
    
+   /**
+    * Gets the warbenkorben.
+    *
+    * @return the warbenkorben
+    */
    public ArrayList<Warenkorb> getWarbenkorben(){
 	   return this.Warenkorben;
    }
    
+   /**
+    * Read CSV.
+    *
+    * @return the array list
+    */
    public ArrayList<String[]> readCSV() {
 	   // Daten von CSV Datei einlesen
 	   ArrayList<String[]> daten = new ArrayList<String[]>();
 
 
-       String file = "..//java_gruppen_projekt/src/de/ba_supermarkt/Supermarkt.CSV"; // ..\\Rohdaten Supermarkt.CSV  java_gruppen_projekt/src/de/ba_supermarkt/Supermarkt.CSV
+       String file = "../java_gruppen_projekt/src/de/ba_supermarkt/Supermarkt.CSV"; // ..\\Rohdaten Supermarkt.CSV  java_gruppen_projekt/src/de/ba_supermarkt/Supermarkt.CSV
        BufferedReader reader = null;
        String line = "";
 
@@ -101,6 +142,11 @@ public class Verwaltung {
    
    
    
+   /**
+    * Lager auffuellen.
+    *
+    * @return the array list
+    */
    public ArrayList<Waren> lagerAuffuellen() {
 	   ArrayList<Waren> meineWaren = new ArrayList<Waren>();
        ArrayList<String[]> daten = this.readCSV();
@@ -141,6 +187,12 @@ public class Verwaltung {
    }
    
    
+   /**
+    * Waren einfuegen.
+    *
+    * @param id the id
+    * @return true, if successful
+    */
    public boolean warenEinfuegen(int id) {
 	   boolean status = true;
 	   Waren pickedItem = this.getMeineWaren().get(id);
@@ -165,6 +217,12 @@ public class Verwaltung {
 	   return status;
    }
    
+   /**
+    * Bezahlen logik.
+    *
+    * @param index the index
+    * @return true, if successful
+    */
    public boolean bezahlenLogik(int index) {
 	   double warenkorbSumme = this.Warenkorben.get(index).getWert();
 	   if(warenkorbSumme != 0) {
@@ -176,6 +234,11 @@ public class Verwaltung {
 	   }
    }
    
+   /**
+    * Warenkorb entfernen.
+    *
+    * @param index the index
+    */
    public void warenkorbEntfernen(int index) {
 	   this.Warenkorben.remove(index);
 	   if(this.Warenkorben.isEmpty()) {
@@ -185,6 +248,12 @@ public class Verwaltung {
 	   }
    }
    
+   /**
+    * Waren entfernen.
+    *
+    * @param waren_id the waren id
+    * @return true, if successful
+    */
    public boolean warenEntfernen(int waren_id) {
 	   // remove the product from the array
 	   if(!this.ausgewaehlteWarenkorb.getMeineWaren().isEmpty()) {
@@ -197,21 +266,47 @@ public class Verwaltung {
    
    
    
+   /**
+    * Gets the tages ausgabe.
+    *
+    * @return the tages ausgabe
+    */
    public double getTagesAusgabe(){
 	   return tagesAusgabe;
    }
    
+   /**
+    * Gets the ausgewaehlte warenkorb.
+    *
+    * @return the ausgewaehlte warenkorb
+    */
    public Warenkorb getAusgewaehlteWarenkorb() {
 	   return this.ausgewaehlteWarenkorb;
    }
    
+  /**
+   * Sets the warenkorb.
+   *
+   * @param index the new warenkorb
+   */
   public void setWarenkorb(int index) {
 	  this.ausgewaehlteWarenkorb = this.Warenkorben.get(index);
   }
   
+  /**
+   * Gets the meine waren.
+   *
+   * @return the meine waren
+   */
   public ArrayList<Waren> getMeineWaren(){
 	  return this.meineWaren;
   }
+  
+  /**
+   * Gets the last.
+   *
+   * @return the last
+   */
   public Warenkorb getLast() {
 	  return this.Warenkorben.get(this.Warenkorben.size()-1);
   }

@@ -1,14 +1,29 @@
+/*
+ * 
+ */
 package de.ba_supermarkt;
 
 import java.util.*;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Main.
+ */
 public class Main {
 	 
-	 private static Verwaltung myVerwaltung;
-	 private static Scanner sc = new Scanner(System.in);
+	 /** The my verwaltung. */
+ 	private static Verwaltung myVerwaltung;
+	 
+ 	/** The sc. */
+ 	private static Scanner sc = new Scanner(System.in);
 	 
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		myVerwaltung = new Verwaltung();
@@ -70,6 +85,9 @@ public class Main {
 	
 	
 	
+	/**
+	 * Prints the menu.
+	 */
 	public static void printMenu() {
 		System.out.println("-----------------------------------------------------");
 		System.out.println("Current cart: " + myVerwaltung.getAusgewaehlteWarenkorb());
@@ -78,6 +96,11 @@ public class Main {
 		System.out.println("-----------------------------------------------------");		
 	}
 	
+	/**
+	 * Prints the product.
+	 *
+	 * @param warenList the waren list
+	 */
 	public static void printProduct(ArrayList<Waren> warenList) {
 		System.out.println("| ID |          Name         | Preis");
 		System.out.println("------------------------------------");
@@ -101,6 +124,9 @@ public class Main {
 	}
 	
 	
+	/**
+	 * Menu add warenkorb.
+	 */
 	public static void menuAddWarenkorb() {
 		String kategorie = "";
 		double geschenkBetrag = 0;
@@ -150,6 +176,9 @@ public class Main {
 		System.out.println(myVerwaltung.getLast() + " has been added");
 	}
 	
+	/**
+	 * Waren kaufen.
+	 */
 	public static void warenKaufen() {
 		
 		int ware_id = 0;
@@ -168,6 +197,9 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * View all warenkorben.
+	 */
 	public static void viewAllWarenkorben() {
 		System.out.println("| ID |        Kategorie       | Gesamtwert");
 		System.out.println("-------------------------------------------");
@@ -187,6 +219,9 @@ public class Main {
 		System.out.print(line);
 	}
 	
+	/**
+	 * Warenkorb wechseln.
+	 */
 	public static void warenkorbWechseln() {
 		viewAllWarenkorben();
 		System.out.println("Please choose which the index for the cart that you want");
@@ -199,6 +234,9 @@ public class Main {
 		clear();
 	}
 	
+	/**
+	 * Bezahlen.
+	 */
 	public static void bezahlen() {
 		clear();
 		viewAllWarenkorben();
@@ -216,6 +254,9 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * Ausgewaehlte warenkorb greifen.
+	 */
 	public static void ausgewaehlteWarenkorbGreifen() {
 		clear();
 		Warenkorb auswahl = myVerwaltung.getAusgewaehlteWarenkorb();
@@ -258,6 +299,9 @@ public class Main {
 		
 	}
 	
+	/**
+	 * Clear.
+	 */
 	public static void clear() {
 		for(int i = 0; i<=50; i++) {
 			System.out.println("\n");

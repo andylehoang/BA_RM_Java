@@ -1,26 +1,58 @@
+/*
+ * 
+ */
 package de.ba_supermarkt;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Warenkorb.
+ */
 public class Warenkorb {
+	
+	/** The counter. */
 	private static int counter = 0;
-	   private ArrayList<Waren> myWaren;
-	   private double Wert;
-	   private String Kategorie;
-	   private boolean Geschenke;
-	   private int id;
+	   
+   	/** The my waren. */
+   	private ArrayList<Waren> myWaren;
+	   
+   	/** The Wert. */
+   	private double Wert;
+	   
+   	/** The Kategorie. */
+   	private String Kategorie;
+	   
+   	/** The Geschenke. */
+   	private boolean Geschenke;
+	   
+   	/** The id. */
+   	private int id;
 	   
 	   
 	   
 	   
-	   public Warenkorb(String kategorie) {
+	   /**
+   	 * Instantiates a new warenkorb.
+   	 *
+   	 * @param kategorie the kategorie
+   	 */
+   	public Warenkorb(String kategorie) {
 		   this.id = ++counter;
 		   this.myWaren = new ArrayList<Waren>();
 		   this.Wert = 0.0;
 		   this.setKategorie(kategorie);  	    
 	   }
-	   public Warenkorb(String kategorie, ArrayList<Waren> warenGeschenk, double betrag) {
+	   
+   	/**
+   	 * Instantiates a new warenkorb.
+   	 *
+   	 * @param kategorie the kategorie
+   	 * @param warenGeschenk the waren geschenk
+   	 * @param betrag the betrag
+   	 */
+   	public Warenkorb(String kategorie, ArrayList<Waren> warenGeschenk, double betrag) {
 		   this.id = ++counter;
 		   this.setKategorie(kategorie);
 		   this.Wert = betrag;
@@ -30,22 +62,48 @@ public class Warenkorb {
 	   }
 	   
 	   
-	   public int getID() {
+	   /**
+   	 * Gets the id.
+   	 *
+   	 * @return the id
+   	 */
+   	public int getID() {
 		   return this.id;
 	   }
-	    public void setKategorie(String kategorie) {
+	    
+    	/**
+    	 * Sets the kategorie.
+    	 *
+    	 * @param kategorie the new kategorie
+    	 */
+    	public void setKategorie(String kategorie) {
 	    	this.Kategorie = kategorie;
 	    }
 	    
-	    public String getKategorie() {
+	    /**
+    	 * Gets the kategorie.
+    	 *
+    	 * @return the kategorie
+    	 */
+    	public String getKategorie() {
 	    	return this.Kategorie;
 	    }
 	    
-	    public ArrayList<Waren> getMeineWaren(){
+	    /**
+    	 * Gets the meine waren.
+    	 *
+    	 * @return the meine waren
+    	 */
+    	public ArrayList<Waren> getMeineWaren(){
 	    	return this.myWaren;
 	    }
 	    
-	    public double getWert() {
+	    /**
+    	 * Gets the wert.
+    	 *
+    	 * @return the wert
+    	 */
+    	public double getWert() {
 	    	//Die Preise im Warenkorb zusammenaddieren
             if(!this.Geschenke) {
             	double value = 0.0;
@@ -60,12 +118,22 @@ public class Warenkorb {
 	    }
 	    
 	    
-	    @Override
+	    /**
+    	 * To string.
+    	 *
+    	 * @return the string
+    	 */
+    	@Override
 	    public String toString() {
 	    	return (!this.Geschenke)? this.id+". "+this.Kategorie : this.id+". "+this.Kategorie+ "_" + (int)this.Wert ;
 	    }
 	    
-	    public void getLaegsteMindesthaltbarkeitsdatum()  {
+	    /**
+    	 * Gets the laegste mindesthaltbarkeitsdatum.
+    	 *
+    	 * @return the laegste mindesthaltbarkeitsdatum
+    	 */
+    	public void getLaegsteMindesthaltbarkeitsdatum()  {
 	    	long htage = -1;
 	    	int index = -1;
 	    	for(Waren ware: this.myWaren) {
@@ -87,7 +155,12 @@ public class Warenkorb {
 	    	}
 	    }
 	    
-	    public void getGeringsteRecyclingAnteil() {
+	    /**
+    	 * Gets the geringste recycling anteil.
+    	 *
+    	 * @return the geringste recycling anteil
+    	 */
+    	public void getGeringsteRecyclingAnteil() {
 	    	int anteile = 10000;
 	    	int index = -1;
 	    	for(Waren ware: this.myWaren) {
@@ -105,7 +178,12 @@ public class Warenkorb {
 	    	
 	    }
 	    
-	    public void warenEntfernen(int index) {
+	    /**
+    	 * Waren entfernen.
+    	 *
+    	 * @param index the index
+    	 */
+    	public void warenEntfernen(int index) {
 	    	this.myWaren.remove(index);
 	    }
 	    
