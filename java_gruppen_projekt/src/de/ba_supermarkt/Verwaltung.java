@@ -71,7 +71,7 @@ public class Verwaltung {
 	   ArrayList<String[]> daten = new ArrayList<String[]>();
 
 
-       String file = "..\\Rohdaten Supermarkt.CSV";
+       String file = "..\\java_gruppen_projekt/Rohdaten Supermarkt.CSV"; // ..\\Rohdaten Supermarkt.CSV
        BufferedReader reader = null;
        String line = "";
 
