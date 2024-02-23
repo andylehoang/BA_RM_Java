@@ -11,20 +11,25 @@ import java.time.temporal.ChronoUnit;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class Lebensmittel.
+ * @author Andy LeHoang, Niels Bohr und Julian Schleich.
+ * Dies ist die Klasse Lebensmittel. Die Produkte mit der Kategorie Lebensmittel sollen als Objekte dieser Klasse Lebensmittel erstellt werden.
+ * @see Bei der Klasse Lebensmittel handelt es sich um eine Tochterklasse der Klasse Waren.
  */
 public class Lebensmittel extends Waren{
 	
-	/** The mindesthaltbarkeit datum. */
+	/** Das Attribut mindesthaltbarkeitDatum wird deklariert.
+	 * 	Das Attribut mindesthaltbarkeitDatum ist das Mindesthaltbarkeitsdatum.
+	 */
 	private String mindesthaltbarkeitDatum; 
    
 	/**
-	 * Instantiates a new lebensmittel.
-	 *
-	 * @param name the name
-	 * @param EK the ek
-	 * @param VK the vk
-	 * @param datum the datum
+	 * Dies ist der Konstruktor der Klasse Lebensmittel.
+     * Die Attribute name, EK und VK werden von der Klasse Waren vererbt.
+     * Das Attribute name, EK, VK und datum werden initialisiert. 
+     * @param name der Name des Objektes.
+     * @param EK der Einkaufpreis des Objektes.
+     * @param VK der Verkaufspreis des Objektes
+	 * @param datum der Mindesthaltbarkeitsdatum des Objektes.
 	 */
 	public Lebensmittel(String name, double EK, double VK, String datum) {
 		super(name,EK,VK);

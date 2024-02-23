@@ -6,20 +6,26 @@ package de.ba_supermarkt;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class Sonstige.
+ * @author Andy LeHoang, Niels Bohr und Julian Schleich.
+ * Dies ist die Klasse Sonstige. Die Produkte mit der Kategorie Sonstige sollen als Objekte dieser Klasse Sonstige erstellt werden.
+ * @see Bei der Klasse Sonstige handelt es sich um eine Tochterklasse der Klasse Waren.
  */
 public class Sonstige extends Waren {
 	
-	/** The fsk. */
-	private int FSK;
+	/** Das Attribut FSK  wird deklariert.
+	 * Das Attribut ist der FSK.
+	*/
+	privat int FSK;
 	
 	/**
-	 * Instantiates a new sonstige.
+	 * Dies ist der Konstruktor der Klasse Sonstige.
+     * Die Attribute name, EK und VK werden von der Klasse Waren vererbt.
+     * Das Attribute name, EK, VK und FSK werden initialisiert.
 	 *
-	 * @param name the name
-	 * @param EK the ek
-	 * @param VK the vk
-	 * @param FSK the fsk
+	 * @param name der Name des Objektes.
+	 * @param EK der Einkaufpreis des Objektes.
+     * @param VK der Verkaufspreis des Objektes.
+	 * @param FSK der FSK des Objektes.
 	 */
 	public Sonstige(String name, double EK, double VK, int FSK) {
 		super(name,EK,VK);

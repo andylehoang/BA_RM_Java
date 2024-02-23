@@ -6,7 +6,7 @@ package de.ba_supermarkt;
 // TODO: Auto-generated Javadoc
 /**
  * @author Andy LeHoang, Niels Bohr und Julian Schleich.
- * Dies ist die Klasse Haushaltsartikel. Die Prdoukte mit der Kategorie Haushaltsartikel sollen als Objekte dieser Klasse Haushaltsartikel erstellt werden.
+ * Dies ist die Klasse Haushaltsartikel. Die Produkte mit der Kategorie Haushaltsartikel sollen als Objekte dieser Klasse Haushaltsartikel erstellt werden.
  * @see Bei der Klasse Haushaltsartikel handelt es sich um eine Tochterklasse der Klasse Waren.  
  */
 public class Haushaltartikel extends Waren{
@@ -20,7 +20,7 @@ public class Haushaltartikel extends Waren{
     /**
      * Dies ist der Konstruktor der Klasse Haushaltartikel.
      * Die Attribute name, EK und VK werden von der Klasse Waren vererbt.
-     * Das Attribut recyclingAnteil wird initialisiert. 
+     * Das Attribute name, EK, VK und recyclingAnteil werden initialisiert. 
      * @param name der Name des Objektes.
      * @param EK der Einkaufpreis des Objektes.
      * @param VK der Verkaufspreis des Objektes.

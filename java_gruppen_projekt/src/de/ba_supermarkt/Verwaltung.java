@@ -158,7 +158,7 @@ public class Verwaltung {
        int pivotAnteile = 0;
        int pivotFSK = 0;
 
-       for (int i = 0; i < daten.size(); i++) { //läuft nur definierte Anzahl =11 durch, später variabel
+       for (int i = 0; i < daten.size(); i++) { 
            if (daten.get(i)[1].equals(Lebensmittel)) {
                pivotEK = Double.parseDouble(daten.get(i)[3]);
                pivotVK = Double.parseDouble(daten.get(i)[4]);
