@@ -6,7 +6,7 @@ package de.ba_supermarkt;
 
 // TODO: Auto-generated Javadoc
 /**
- * @author Andy LeHoang, Niels Bohr und Julian Schleich.
+ * @author Andy Le Hoang, Niels Bohr und Julian Schleich.
  * Dies ist die Klasse Sonstige. Die Produkte mit der Kategorie Sonstige sollen als Objekte dieser Klasse Sonstige erstellt werden.
  * @see Bei der Klasse Sonstige handelt es sich um eine Tochterklasse der Klasse Waren.
  */
@@ -15,7 +15,7 @@ public class Sonstige extends Waren {
 	/** Das Attribut FSK  wird deklariert.
 	 * Das Attribut ist der FSK.
 	*/
-	privat int FSK;
+	private int FSK;
 	
 	/**
 	 * Dies ist der Konstruktor der Klasse Sonstige.

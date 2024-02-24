@@ -173,7 +173,7 @@ public class Main {
 		//Warenkorb einfügen
 		myVerwaltung.addWarenkorb(kategorie, geschenkBetrag);
 		clear();
-		System.out.println(myVerwaltung.getLast() + " has been added");
+		System.out.println(myVerwaltung.getLetzte() + " has been added");
 	}
 	
 	/**

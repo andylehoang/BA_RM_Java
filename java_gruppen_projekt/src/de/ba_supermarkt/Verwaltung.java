@@ -10,63 +10,71 @@ import java.util.ArrayList;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class Verwaltung.
+ * 
+ * @author Andy Le Hoang.
+ * Die Verwaltung fungiert als Betreiber des Programms, indem sie die vom Kunden bereitgestellten Eingabedaten entgegennimmt, die entsprechende Geschäftslogik ausführt und zentral Daten speichert und verwaltet, die für den Betrieb des Programms erforderlich sind.
+ * @see Main#main(String[])
  */
 public class Verwaltung {
    
-   /** The Warenkorben. */
+   /**  Verwaltet alle Warenkörbe, die von Kunden erstellt wurden */
    private ArrayList<Warenkorb> Warenkorben;
    
-   /** The meine waren. */
+   /**  Liste der angebotenen Waren im Supermarkt  */
    private ArrayList<Waren> meineWaren;
    
-   /** The ausgewaehlte warenkorb. */
+   /**  Zwischenspeicher für den vom Kunden ausgewählten Warenkorb.*/
    private Warenkorb ausgewaehlteWarenkorb;
    
-   /** The tages ausgabe. */
+   /** Summiert die Gesamtausgaben des Kunden im Supermarkt für den Tag. */
    private static double tagesAusgabe = 0;
    
    
 
    
    /**
-    * Instantiates a new verwaltung.
+    * Instanziert eine neue Verwaltung Objekt. 
+    * Die Attribute Warenkorben wird initalisiert.
+    * Die Attribute meineWaren wird durch die Funktion lagerAuffuelen mit 12 Waren Objekt befüllt.
+    * Eine normale Waren, ohne Besonderheiten, wird als Default gesetzt.
     */
    public Verwaltung() {
 	   this.Warenkorben = new ArrayList<Warenkorb>();
 	   this.meineWaren= this.lagerAuffuellen();
-	   
-	   //Add Proxy to test
-	  
 	   
 	   //set default Warenkorb
 	   this.addWarenkorb("Standard", 0);
    }
    
    /**
-    * Adds the warenkorb.
+    * Einen neue Warenkorb erstellen und die Warenkorben Liste hinzufügen.
     *
-    * @param kategorie the kategorie
-    * @param geschenkBetrag the geschenk betrag
+    * @param kategorie für das Warenkorb 
+    * @param geschenkBetrag bestimmt die Höhe des Geldbetrags für den Warenkorb mit Geschenkoptionen.
+    * @see #Verwaltung()
+    * @see Main#menuAddWarenkorb()
+    * @see #warenEntfernen(int)
     */
    public void addWarenkorb(String kategorie, double geschenkBetrag) {
 	   if(geschenkBetrag == 0) {
 		   this.Warenkorben.add(new Warenkorb(kategorie));
 		   this.setWarenkorb(this.Warenkorben.size()-1);
 	   } else {
-		   this.Warenkorben.add(new Warenkorb(kategorie,this.generateGeschenkListe(kategorie, geschenkBetrag),geschenkBetrag));
+		   this.Warenkorben.add(new Warenkorb(kategorie,this.geschenkListeGenerieren(kategorie, geschenkBetrag),geschenkBetrag));
 	   }
 	     
    }
    
    /**
-    * Generate geschenk liste.
+    * 
+    * Generiert eine Liste von Waren bis zur Höhe des gegebenen Betrags unter Berücksichtigung verschiedener Kategorienbeschränkungen.
     *
     * @param kategorie the kategorie
     * @param summeBetrag the summe betrag
-    * @return the array list
+    * @see #addWarenkorb(String, double)
+    * @return die Liste von Waren als ArrayList<Waren>
     */
-   public ArrayList<Waren> generateGeschenkListe(String kategorie, double summeBetrag) {
+   public ArrayList<Waren> geschenkListeGenerieren(String kategorie, double summeBetrag) {
 	   double betrag = summeBetrag;
 	   ArrayList<Waren> GeschenkList = new ArrayList<Waren>();
 	   while(betrag >= 0) {
@@ -94,8 +102,11 @@ public class Verwaltung {
    
    
    /**
-    * Gets the warbenkorben.
+    * Zugriff auf die Attribute Warenkorben. 
     *
+    * @see Main#viewAllWarenkorben()
+    * @see Main#warenkorbWechseln()
+    * @see Main#bezahlen()
     * @return the warbenkorben
     */
    public ArrayList<Warenkorb> getWarbenkorben(){
@@ -103,9 +114,10 @@ public class Verwaltung {
    }
    
    /**
-    * Read CSV.
-    *
-    * @return the array list
+    * Extrahiert die Produktdaten aus der Supermarkt.CSV-Datei.
+    * 
+    * @see #lagerAuffuellen()
+    * @return eine ArrayList aus listen von Strings
     */
    public ArrayList<String[]> readCSV() {
 	   // Daten von CSV Datei einlesen
@@ -143,9 +155,9 @@ public class Verwaltung {
    
    
    /**
-    * Lager auffuellen.
-    *
-    * @return the array list
+    * Konvertiert die extrahierten Daten aus der CSV-Datei und erstellt für jedes Produkt ein entsprechendes Objekt, das dann der Attribute 'meineWaren' hinzugefügt wird.
+    * @see #Verwaltung()
+    * @return  Liste der angebotenen Produkte in Form von ArrayList<Waren>
     */
    public ArrayList<Waren> lagerAuffuellen() {
 	   ArrayList<Waren> meineWaren = new ArrayList<Waren>();
@@ -188,9 +200,10 @@ public class Verwaltung {
    
    
    /**
-    * Waren einfuegen.
+    * Fügt die gewunschte Waren in die ausgewählt Warenkorb hinzu.
     *
-    * @param id the id
+    * @param int id von der Ware aus der meineWaren Liste
+    * @see Main#warenKaufen()
     * @return true, if successful
     */
    public boolean warenEinfuegen(int id) {
@@ -218,10 +231,11 @@ public class Verwaltung {
    }
    
    /**
-    * Bezahlen logik.
+    * Führt den Bezahlungsvorgang für den gewünschten Warenkorb durch und entfernt diesen Warenkorb aus der Liste.
     *
-    * @param index the index
-    * @return true, if successful
+    * @param index von der Warenkorb in der Liste
+    * @see Main#bezahlen()
+    * @return true, wenn der Wert vom Warenkorb nicht 0 ist.
     */
    public boolean bezahlenLogik(int index) {
 	   double warenkorbSumme = this.Warenkorben.get(index).getWert();
@@ -235,9 +249,10 @@ public class Verwaltung {
    }
    
    /**
-    * Warenkorb entfernen.
-    *
-    * @param index the index
+    * Warenkorb aus der Warkorben Liste entfernen.
+    * 
+    * @see #bezahlenLogik(int)
+    * @param index vom gewünschten Warenkorb
     */
    public void warenkorbEntfernen(int index) {
 	   this.Warenkorben.remove(index);
@@ -249,15 +264,16 @@ public class Verwaltung {
    }
    
    /**
-    * Waren entfernen.
+    * Waren aus der vom Kunde vorher ausgewählte Warenkorb entfernen
     *
-    * @param waren_id the waren id
-    * @return true, if successful
+    * @param int index vom Waren in der Waren-Liste vom ausgewäehlten Warenkorb 
+    * @see Main#ausgewaehlteWarenkorbGreifen() 
+    * @return true, wenn Warenkorb nicht leer ist und die Ware erfolgreich entfernt wird.
     */
-   public boolean warenEntfernen(int waren_id) {
+   public boolean warenEntfernen(int warenIndex) {
 	   // remove the product from the array
 	   if(!this.ausgewaehlteWarenkorb.getMeineWaren().isEmpty()) {
-		   this.ausgewaehlteWarenkorb.warenEntfernen(waren_id);
+		   this.ausgewaehlteWarenkorb.warenEntfernen(warenIndex);
 		   return true;
 	   } 
 	   return false;
@@ -267,47 +283,57 @@ public class Verwaltung {
    
    
    /**
-    * Gets the tages ausgabe.
-    *
-    * @return the tages ausgabe
+    * Zugriff auf die gesamte Ausgabe vom Kunde für den Tag
+    * 
+    * @see Main#main(String[])
+    * @return tagesAusgabe
     */
    public double getTagesAusgabe(){
 	   return tagesAusgabe;
    }
    
    /**
-    * Gets the ausgewaehlte warenkorb.
-    *
-    * @return the ausgewaehlte warenkorb
+    * Zugriff auf die vom Kunde ausgewählte Warenkorb
+    * 
+    * @see Main#printProduct(ArrayList)
+    * @see Main#warenKaufen()
+    * @see Main#ausgewaehlteWarenkorbGreifen()
+    * @return ausgewaehlte Warenkorb
     */
    public Warenkorb getAusgewaehlteWarenkorb() {
 	   return this.ausgewaehlteWarenkorb;
    }
    
   /**
-   * Sets the warenkorb.
-   *
-   * @param index the new warenkorb
+   * Zu einem neuen Warenkorb aus der Liste der Warenkörbe wechseln.
+   * 
+   * @see Main#warenkorbWechseln()
+   * @see #addWarenkorb(String, double)
+   * @see #warenkorbEntfernen(int)
+   * @param index vom gewünschten Warenkorb
    */
   public void setWarenkorb(int index) {
 	  this.ausgewaehlteWarenkorb = this.Warenkorben.get(index);
   }
   
   /**
-   * Gets the meine waren.
+   * Zugriff auf die meineWaren-Liste
    *
-   * @return the meine waren
+   * @see Main#main(String[])
+   * @see Main#warenKaufen()
+   * @return die Liste der angebotenen Produkte
    */
   public ArrayList<Waren> getMeineWaren(){
 	  return this.meineWaren;
   }
   
   /**
-   * Gets the last.
+   * Gibt die letzte Element der Liste von Warenkorben an
    *
-   * @return the last
+   * @see Main#menuAddWarenkorb()
+   * @return letzte Warenkorb
    */
-  public Warenkorb getLast() {
+  public Warenkorb getLetzte() {
 	  return this.Warenkorben.get(this.Warenkorben.size()-1);
   }
     
