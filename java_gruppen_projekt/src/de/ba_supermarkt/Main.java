@@ -8,21 +8,23 @@ import java.util.*;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class Main.
+ * Die Main Klasse interagiert mit dem Kunde via eine User Interface in der Konsole und behandelt die eingegebene Daten, damit die zu der Verwaltung weitergeleitet werden.
+ * 
+ * @author Andy Le Hoang
  */
 public class Main {
 	 
-	 /** The my verwaltung. */
+	 /** Die Instanz für die Verwaltung wird deklariert. */
  	private static Verwaltung myVerwaltung;
 	 
- 	/** The sc. */
+ 	/** Ein Scanner-Objekt wird zur Einlesung von Kundeneingaben initialisiert. */
  	private static Scanner sc = new Scanner(System.in);
 	 
 
 	/**
-	 * The main method.
+	 * Die Applikation wird in der `main`-Methode eingeführt. Dabei erscheint die Benutzerschnittstelle in der Konsole. Abhängig von der Eingabe des Benutzers wird die entsprechende Geschäftslogik ausgeführt. Zusätzlich existiert ein Mechanismus zur Überprüfung fehlerhafter Eingaben, der es dem Benutzer ermöglicht, eine neue Eingabe gemäß den angegebenen Richtlinien anzufordern. Darüber hinaus wird die Instanz für die Verwaltung initialisiert, um die Applikation zu steuern. Am Ende der Laufzeit der Applikation wird die gesamte Ausgabe vom Kunde angezeigt.
 	 *
-	 * @param args the arguments
+	 * @param args die Argumente
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -86,7 +88,7 @@ public class Main {
 	
 	
 	/**
-	 * Prints the menu.
+	 * Das Menu für die einzelnen Funktionen wird ausgedruckt
 	 */
 	public static void printMenu() {
 		System.out.println("-----------------------------------------------------");
@@ -97,9 +99,11 @@ public class Main {
 	}
 	
 	/**
-	 * Prints the product.
-	 *
-	 * @param warenList the waren list
+	 * Drückt die Liste von Waren in einer geordnete Tabelle aus. 
+	 * 
+	 * @see #main(String[])
+	 * @see #ausgewaehlteWarenkorbGreifen()
+	 * @param warenList Liste von Waren
 	 */
 	public static void printProduct(ArrayList<Waren> warenList) {
 		System.out.println("| ID |          Name         | Preis");
@@ -125,7 +129,9 @@ public class Main {
 	
 	
 	/**
-	 * Menu add warenkorb.
+	 * Die Menu für die Kategorien und Auswahl für die Feststellung der Geschenkoption von Warenkorb ausdrucken. Die Eingabe von Kunde wird geprüft. Danach wird die passende Daten für die Erstellung einer neue Warenkorb Objekt verwendet. 
+	 * 
+	 * @see #main(String[])
 	 */
 	public static void menuAddWarenkorb() {
 		String kategorie = "";
@@ -177,20 +183,22 @@ public class Main {
 	}
 	
 	/**
-	 * Waren kaufen.
+	 * Der Logik für das Einfügen von Ware im Warenkorb wird durchgeführt. Aber zuerst muss die Eingabe zur Auswahl der gewünschten Ware überprüft.
+	 * 
+	 * @see #main(String[])
 	 */
 	public static void warenKaufen() {
 		
-		int ware_id = 0;
+		int wareID = 0;
 		System.out.println("Please choose the id of the item that you want to buy");
-		ware_id = sc.nextInt();
-		while(ware_id> 12 || ware_id < 1) {
+		wareID = sc.nextInt();
+		while(wareID> 12 || wareID < 1) {
 			System.out.println("Wrong input. Please try again");
-			ware_id = sc.nextInt();
+			wareID = sc.nextInt();
 		}
 		clear();
-		Waren pickedItem = myVerwaltung.getMeineWaren().get(ware_id-1);
-		if(myVerwaltung.warenEinfuegen(ware_id-1)) {
+		Waren pickedItem = myVerwaltung.getMeineWaren().get(wareID-1);
+		if(myVerwaltung.warenEinfuegen(wareID-1)) {
 			System.out.println(pickedItem.getName()+ " has been added to " + myVerwaltung.getAusgewaehlteWarenkorb());
 		}else {
 			System.out.println("Item is not suitable for categorie:" + myVerwaltung.getAusgewaehlteWarenkorb().getKategorie());
@@ -198,7 +206,11 @@ public class Main {
 	}
 	
 	/**
-	 * View all warenkorben.
+	 * Ein Überblick von aller vom Kunde erstellten Warenkörbe wird in einer Tabelle dargestellt.
+	 * 
+	 * @see #main(String[])
+	 * @see #warenkorbWechseln()
+	 * @see #bezahlen()
 	 */
 	public static void viewAllWarenkorben() {
 		System.out.println("| ID |        Kategorie       | Gesamtwert");
@@ -220,7 +232,9 @@ public class Main {
 	}
 	
 	/**
-	 * Warenkorb wechseln.
+	 * Der Logik für das Wechseln von verschiedene Warenkörbe wird durchgeführt, nachdem der Kunde feststellt, welchen Warenkorb er möchte.
+	 * 
+	 * @see #main(String[])
 	 */
 	public static void warenkorbWechseln() {
 		viewAllWarenkorben();
@@ -235,7 +249,9 @@ public class Main {
 	}
 	
 	/**
-	 * Bezahlen.
+	 * Der Logik von der Bezahlungsvorgang für die vom Kunde ausgewählten Warenkorb wird durchgeführt. 
+	 * 
+	 * @see #main(String[])
 	 */
 	public static void bezahlen() {
 		clear();
@@ -255,7 +271,9 @@ public class Main {
 	}
 	
 	/**
-	 * Ausgewaehlte warenkorb greifen.
+	 * Zugriff auf den momentan ausgewählte Warenkorb. Die besondere Eigenschaften von Waren im Warenkorb werden angezeigt. Funktionen wie Warenkorb direkt bezahlen, Warenkorb entfernen und zurückspringen wird dem Kunden angebote. Diese werden nach Eingabe von Kunde durchgeführt. Status Meldung werden am Ende angezeigt.
+	 * 
+	 * @see #main(String[])
 	 */
 	public static void ausgewaehlteWarenkorbGreifen() {
 		clear();
@@ -300,7 +318,12 @@ public class Main {
 	}
 	
 	/**
-	 * Clear.
+	 * 50 leere Zeile für das Entleeren der Konsole generieren.
+	 * @see #main(String[])
+	 * @see #ausgewaehlteWarenkorbGreifen()  
+	 * @see #bezahlen()
+	 * @see #warenkorbWechseln()
+	 * @see #warenKaufen()
 	 */
 	public static void clear() {
 		for(int i = 0; i<=50; i++) {
