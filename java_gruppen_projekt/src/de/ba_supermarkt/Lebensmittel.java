@@ -37,21 +37,21 @@ public class Lebensmittel extends Waren{
 	}
 	
 	/**
-	 * Duration.
+	 * Berechnet, wie viele Tage bis zum Verfallsdatum verbleiben
 	 *
-	 * @return the long
-	 * @throws ParseException the parse exception
+	 * @return die Differenz
+	 * @throws ParseException die Parse Exception
 	 */
 	public long duration() throws ParseException {
 		long delta = 0;
 		LocalDateTime now = LocalDateTime.now();
 
-        // Parse the date from a String
+        // Datum zu String parsen
 		
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // Specify the date format
         LocalDate date = LocalDate.parse(this.mindesthaltbarkeitDatum, formatter);
 
-        // Subtract the parsed date from the current date and time
+        // Delta von jetzt zum Mindesthaltbarkeitdatum berechnen
         delta = ChronoUnit.DAYS.between(now.toLocalDate(),date);		
 		return delta;
 		

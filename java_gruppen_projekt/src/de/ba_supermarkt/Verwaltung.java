@@ -37,6 +37,7 @@ public class Verwaltung {
     * Die Attribute Warenkorben wird initalisiert.
     * Die Attribute meineWaren wird durch die Funktion lagerAuffuelen mit 12 Waren Objekt befüllt.
     * Eine normale Waren, ohne Besonderheiten, wird als Default gesetzt.
+    * @see Main
     */
    public Verwaltung() {
 	   this.Warenkorben = new ArrayList<Warenkorb>();
@@ -49,8 +50,8 @@ public class Verwaltung {
    /**
     * Einen neue Warenkorb erstellen und die Warenkorben Liste hinzufügen.
     *
-    * @param kategorie für das Warenkorb 
-    * @param geschenkBetrag bestimmt die Höhe des Geldbetrags für den Warenkorb mit Geschenkoptionen.
+    * @param kategorie die Kategorie für das Warenkorb 
+    * @param geschenkBetrag die Höhe des Geldbetrags für den Warenkorb mit Geschenkoptionen.
     * @see #Verwaltung()
     * @see Main#menuAddWarenkorb()
     * @see #warenEntfernen(int)
@@ -107,7 +108,7 @@ public class Verwaltung {
     * @see Main#viewAllWarenkorben()
     * @see Main#warenkorbWechseln()
     * @see Main#bezahlen()
-    * @return the warbenkorben
+    * @return die warbenkorben
     */
    public ArrayList<Warenkorb> getWarbenkorben(){
 	   return this.Warenkorben;
@@ -295,7 +296,7 @@ public class Verwaltung {
    /**
     * Zugriff auf die vom Kunde ausgewählte Warenkorb
     * 
-    * @see Main#printProduct(ArrayList)
+    * @see Main#produktAusstellen(ArrayList)
     * @see Main#warenKaufen()
     * @see Main#ausgewaehlteWarenkorbGreifen()
     * @return ausgewaehlte Warenkorb

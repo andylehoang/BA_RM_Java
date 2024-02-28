@@ -46,20 +46,13 @@ package de.ba_supermarkt;
     	this.verkaufPreis = VK;
     } 
     
-    /**
-     * Diese Methode gibt den Wert von id zurück.
-     *
-     * @return den Wert von id.
-     */
-    public int getId() {
-    	return this.id;
-    }
+    
     
     /**
      * Diese Methode gibt den Wert von ek zurück.
      *
      * @return den Wert von ek.
-     * @see Main#printProduct(java.util.ArrayList)
+     * @see Main#produktAusstellen(java.util.ArrayList)
      * @see Verwaltung#geschenkListeGenerieren(String, double)
      * @see Warenkorb#getWert()
      */
@@ -71,7 +64,7 @@ package de.ba_supermarkt;
      * Diese Methode gibt den Wert von vk zurück.
      *
      * @return den Wert von vk.
-     * @see Main#printProduct(java.util.ArrayList)
+     * @see Main#produktAusstellen(java.util.ArrayList)
      * @see Verwaltung#geschenkListeGenerieren(String, double)
      * @see Verwaltung#warenEinfuegen(int)
      * @see Warenkorb#getWert()
@@ -84,7 +77,7 @@ package de.ba_supermarkt;
      * Diese Methode gibt den Inhalt von name zurück.
      *
      * @return den Inhalt von name.
-     * @see Main#printProduct(java.util.ArrayList)
+     * @see Main#produktAusstellen(java.util.ArrayList)
      * @see Main#warenKaufen()
      * @see Verwaltung#geschenkListeGenerieren(String, double)
      * @see Verwaltung#warenEinfuegen(int)

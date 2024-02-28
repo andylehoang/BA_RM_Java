@@ -27,7 +27,7 @@ public class Warenkorb {
    	private String kategorie;
 	   
    	/** Legt fest, ob die Geschenkoption gewählt wird */
-   	private boolean Geschenke;
+   	private boolean geschenk;
 	   
    	/** Identifikationsnummer für die Warenkorbinstanz */
    	private int id;
@@ -45,7 +45,8 @@ public class Warenkorb {
 		   this.id = ++counter;
 		   this.myWaren = new ArrayList<Waren>();
 		   this.wert = 0.0;
-		   this.kategorie = kategorie;  	    
+		   this.kategorie = kategorie;
+		   this.geschenk = false;
 	   }
 	   
    	/**
@@ -61,7 +62,7 @@ public class Warenkorb {
 		   this.kategorie  = kategorie;
 		   this.wert = betrag;
 		   this.myWaren = warenGeschenk;
-		   this.Geschenke = true;
+		   this.geschenk = true;
 		   
 	   }
 	    
@@ -102,7 +103,7 @@ public class Warenkorb {
     	 */
     	public double getWert() {
 	    	//Die Preise im Warenkorb zusammen addieren
-            if(!this.Geschenke) {
+            if(!this.geschenk) {
             	double value = 0.0;
     	    	for(Waren ware: myWaren) {
     	    		value += (this.kategorie.equalsIgnoreCase("Mitarbeiterprogramm"))? ware.getEK(): ware.getVK();
@@ -119,10 +120,11 @@ public class Warenkorb {
     	 * Überschreibt die toString-Methode, damit man den Instanz im Konsole vereinfacht  als String ausgeben lassen kann
     	 *
     	 * @return überblickende Beschreibung des Warenkorbs
+    	 * @see Main#viewAllWarenkorben()
     	 */
     	@Override
 	    public String toString() {
-	    	return (!this.Geschenke)? this.id+". "+this.kategorie : this.id+". "+this.kategorie+ "_" + (int)this.wert ;
+	    	return (!this.geschenk)? this.id+". "+this.kategorie : this.id+". "+this.kategorie+ "_" + (int)this.wert ;
 	    }
 	    
 	    /**
