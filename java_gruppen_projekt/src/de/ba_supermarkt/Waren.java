@@ -5,28 +5,39 @@ package de.ba_supermarkt;
 
  // TODO: Auto-generated Javadoc
 /**
-  * The Class Waren.
+  * @author Andy LeHoang, Niels Bohr und Julian Schleich.
+  * Dies ist die Klasse Waren. Diese Klasse ist die Mutterklasse der Klassen Haushaltsartikel, Lebensmittel und Sonstige.
+  *   
   */
  public class Waren {
 	
-	/** The counter. */
+	/** Das Attribut counter wird deklariert.
+   *  Das Attribut counter ist für das Vergeben der ID nötig. 
+   */
 	private static int counter= 0;
     
-    /** The id. */
+    /** Das Attribut id wird deklariert.
+     *  Das Attribut id ist die einmalige id jedes Objektes. 
+     */
     private int id;
     
-    /** The verkauf preis. */
+    /** Die Attribute einkaufPreis und verkaufPreis werden deklariert.
+     *  Das Attribut einkaufPreis ist der Einkaufspreis.
+     *  Das Attribut verkaufPreis ist der Verkaufspreis.
+     */
     private double einkaufPreis, verkaufPreis;
     
-    /** The name. */
+    /** Das Attribut name wird deklariert. 
+     *  Das Attribut name ist der Name.
+     */
     private String name;
     
     /**
-     * Instantiates a new waren.
-     *
-     * @param name the name
-     * @param EK the ek
-     * @param VK the vk
+     * Dies ist der Konstruktor der Klasse Waren.
+     * Das Attribute name, EK und VK werden initialisiert.
+     * @param name der Name des Objektes.
+     * @param EK der Einkaufpreis des Objektes.
+     * @param VK der Verkaufspreis des Objektes.
      */
     public Waren(String name, double EK, double VK) {
     	this.id = ++counter;
@@ -36,45 +47,45 @@ package de.ba_supermarkt;
     } 
     
     /**
-     * Gets the id.
+     * Diese Methode gibt den Wert von id zurück.
      *
-     * @return the id
+     * @return den Wert von id.
      */
     public int getId() {
     	return this.id;
     }
     
     /**
-     * Gets the ek.
+     * Diese Methode gibt den Wert von ek zurück.
      *
-     * @return the ek
+     * @return den Wert von ek.
      */
     public double getEK() {
     	return this.einkaufPreis;
     }
     
     /**
-     * Gets the vk.
+     * Diese Methode gibt den Wert von vk zurück.
      *
-     * @return the vk
+     * @return den Wert von vk.
      */
     public double getVK() {
     	return this.verkaufPreis;
     }
     
     /**
-     * Gets the name.
+     * Diese Methode gibt den Inhalt von name zurück.
      *
-     * @return the name
+     * @return den Inhalt von name.
      */
     public String getName() {
     	return this.name;
     }
     
     /**
-     * To string.
+     * Dies ist die toString-Methode der Methode getName.
      *
-     * @return the string
+     * @return den Inhalt von name.
      */
     @Override
     public String toString() {
