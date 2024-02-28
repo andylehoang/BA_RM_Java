@@ -89,6 +89,8 @@ public class Main {
 	
 	/**
 	 * Das Menu für die einzelnen Funktionen wird ausgedruckt
+	 * 
+	 * @see #main(String[])
 	 */
 	public static void printMenu() {
 		System.out.println("-----------------------------------------------------");

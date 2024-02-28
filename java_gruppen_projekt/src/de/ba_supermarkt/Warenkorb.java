@@ -8,130 +8,127 @@ import java.util.ArrayList;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class Warenkorb.
+ * Diese Klasse bildet die Warenkorb ab. Sie enthält alle wichtige Eigenschaften eines virtuellen Warenkorbs und beinhaltet die vom Kunde gekaufte Waren.
+ * 
+ * @author Andy Le Hoang
  */
 public class Warenkorb {
 	
-	/** The counter. */
+	/** Verfolgt die Anzahl der erzeugten Instanzen dieser Klasse */
 	private static int counter = 0;
 	   
-   	/** The my waren. */
+   	/** Beinhalten die hinzugefügten Waren  */
    	private ArrayList<Waren> myWaren;
 	   
-   	/** The Wert. */
-   	private double Wert;
+   	/** Gesamtbetrag von aller Waren im Warenkorb */
+   	private double wert;
 	   
-   	/** The Kategorie. */
-   	private String Kategorie;
+   	/** Die Kategorie vom Warenkorb */
+   	private String kategorie;
 	   
-   	/** The Geschenke. */
+   	/** Legt fest, ob die Geschenkoption gewählt wird */
    	private boolean Geschenke;
 	   
-   	/** The id. */
+   	/** Identifikationsnummer für die Warenkorbinstanz */
    	private int id;
 	   
 	   
 	   
 	   
 	   /**
-   	 * Instantiates a new warenkorb.
+   	 * Instanziert einen neuer Warenkorb ohne Geschenkoption
    	 *
-   	 * @param kategorie the kategorie
+   	 * @param kategorie die Kategorie vom Warenkorben 
+   	 * @see Verwaltung#addWarenkorb(String, double)
    	 */
    	public Warenkorb(String kategorie) {
 		   this.id = ++counter;
 		   this.myWaren = new ArrayList<Waren>();
-		   this.Wert = 0.0;
-		   this.setKategorie(kategorie);  	    
+		   this.wert = 0.0;
+		   this.kategorie = kategorie;  	    
 	   }
 	   
    	/**
-   	 * Instantiates a new warenkorb.
+   	 * Den Konstruktor überladen. Istanziert einen neuer Warenkorb mit festgelegten Geschenkbetrag
    	 *
-   	 * @param kategorie the kategorie
-   	 * @param warenGeschenk the waren geschenk
-   	 * @param betrag the betrag
+   	 * @param kategorie die Kategorie vom Warenkorben in Form einer String
+   	 * @param warenGeschenk die Liste von Waren, die für die Geschenkoption generiert wird
+   	 * @param betrag die erwünschte Summe aller Waren innerhalb dieses Geschenkwarenkorbs.
+   	 * @see Verwaltung#addWarenkorb(String, double)
    	 */
    	public Warenkorb(String kategorie, ArrayList<Waren> warenGeschenk, double betrag) {
 		   this.id = ++counter;
-		   this.setKategorie(kategorie);
-		   this.Wert = betrag;
+		   this.kategorie  = kategorie;
+		   this.wert = betrag;
 		   this.myWaren = warenGeschenk;
 		   this.Geschenke = true;
 		   
 	   }
-	   
-	   
-	   /**
-   	 * Gets the id.
-   	 *
-   	 * @return the id
-   	 */
-   	public int getID() {
-		   return this.id;
-	   }
-	    
-    	/**
-    	 * Sets the kategorie.
-    	 *
-    	 * @param kategorie the new kategorie
-    	 */
-    	public void setKategorie(String kategorie) {
-	    	this.Kategorie = kategorie;
-	    }
 	    
 	    /**
-    	 * Gets the kategorie.
+    	 * Gibt die Kategorie des Warenkorbs zurück
     	 *
-    	 * @return the kategorie
+    	 * @return die Kategorie des Warenkorbs
+    	 * @see Verwaltung#warenEinfuegen(int)
+    	 * @see Main#printProduct(ArrayList)
+    	 * @see Main#viewAllWarenkorben()
+    	 * 
     	 */
     	public String getKategorie() {
-	    	return this.Kategorie;
+	    	return this.kategorie;
 	    }
 	    
 	    /**
-    	 * Gets the meine waren.
+    	 * Gibt die Liste von eingefügten Waren zurück
     	 *
-    	 * @return the meine waren
+    	 * @return die Liste myWaren
+    	 * @see Verwaltung#warenEntfernen(int)
+    	 * @see Verwaltung#warenEinfuegen(int)
+    	 * @see Main#warenKaufen()
+    	 * @see Main#ausgewaehlteWarenkorbGreifen()
+    	 * 
     	 */
     	public ArrayList<Waren> getMeineWaren(){
 	    	return this.myWaren;
 	    }
 	    
 	    /**
-    	 * Gets the wert.
+    	 * Gibt den Gesamtwert des Warenkorbs zurück
     	 *
-    	 * @return the wert
+    	 * @return den Wert
+    	 * @see Verwaltung#bezahlenLogik(int)
+    	 * @see Main#viewAllWarenkorben()
+    	 * @see Main#ausgewaehlteWarenkorbGreifen()
     	 */
     	public double getWert() {
-	    	//Die Preise im Warenkorb zusammenaddieren
+	    	//Die Preise im Warenkorb zusammen addieren
             if(!this.Geschenke) {
             	double value = 0.0;
     	    	for(Waren ware: myWaren) {
-    	    		value += (this.Kategorie.equalsIgnoreCase("Mitarbeiterprogramm"))? ware.getEK(): ware.getVK();
+    	    		value += (this.kategorie.equalsIgnoreCase("Mitarbeiterprogramm"))? ware.getEK(): ware.getVK();
     	    	}
-    	    	this.Wert = value;
+    	    	this.wert = value;
             }
-            double roundOff = Math.round(this.Wert * 100.0) / 100.0;
+            double roundOff = Math.round(this.wert * 100.0) / 100.0;
 	    	return roundOff;
 	    	
 	    }
 	    
 	    
 	    /**
-    	 * To string.
+    	 * Überschreibt die toString-Methode, damit man den Instanz im Konsole vereinfacht  als String ausgeben lassen kann
     	 *
-    	 * @return the string
+    	 * @return überblickende Beschreibung des Warenkorbs
     	 */
     	@Override
 	    public String toString() {
-	    	return (!this.Geschenke)? this.id+". "+this.Kategorie : this.id+". "+this.Kategorie+ "_" + (int)this.Wert ;
+	    	return (!this.Geschenke)? this.id+". "+this.kategorie : this.id+". "+this.kategorie+ "_" + (int)this.wert ;
 	    }
 	    
 	    /**
-    	 * Gets the laegste mindesthaltbarkeitsdatum.
+    	 * Sucht die Waren mit dem längste Mindesthaltbarkeitdatum und gibt sie dann im Konsole aus.
     	 *
-    	 * @return the laegste mindesthaltbarkeitsdatum
+    	 * @see Main#ausgewaehlteWarenkorbGreifen()
     	 */
     	public void getLaegsteMindesthaltbarkeitsdatum()  {
 	    	long htage = -1;
@@ -156,9 +153,9 @@ public class Warenkorb {
 	    }
 	    
 	    /**
-    	 * Gets the geringste recycling anteil.
+    	 * Sucht die Waren mit dem geringsten Recycling-Anteil und gibt sie dann im Konsole aus.
     	 *
-    	 * @return the geringste recycling anteil
+    	 * @see Main#ausgewaehlteWarenkorbGreifen()
     	 */
     	public void getGeringsteRecyclingAnteil() {
 	    	int anteile = 10000;
@@ -179,9 +176,10 @@ public class Warenkorb {
 	    }
 	    
 	    /**
-    	 * Waren entfernen.
+    	 * Waren aus der myWaren-Liste entfernen.
     	 *
-    	 * @param index the index
+    	 * @param index den Index von der Ware in der Liste
+    	 * @see Verwaltung#warenEntfernen(int)
     	 */
     	public void warenEntfernen(int index) {
 	    	this.myWaren.remove(index);

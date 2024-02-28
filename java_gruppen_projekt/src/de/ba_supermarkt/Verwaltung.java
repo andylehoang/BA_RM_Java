@@ -72,7 +72,7 @@ public class Verwaltung {
     * @param kategorie the kategorie
     * @param summeBetrag the summe betrag
     * @see #addWarenkorb(String, double)
-    * @return die Liste von Waren als ArrayList<Waren>
+    * @return die Liste von Waren 
     */
    public ArrayList<Waren> geschenkListeGenerieren(String kategorie, double summeBetrag) {
 	   double betrag = summeBetrag;
@@ -202,9 +202,9 @@ public class Verwaltung {
    /**
     * Fügt die gewunschte Waren in die ausgewählt Warenkorb hinzu.
     *
-    * @param int id von der Ware aus der meineWaren Liste
+    * @param id der Index der Ware aus der meineWaren-Liste
     * @see Main#warenKaufen()
-    * @return true, if successful
+    * @return true, wenn Ware erfolgreich eingefügt wird
     */
    public boolean warenEinfuegen(int id) {
 	   boolean status = true;

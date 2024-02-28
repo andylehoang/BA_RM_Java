@@ -59,6 +59,9 @@ package de.ba_supermarkt;
      * Diese Methode gibt den Wert von ek zurück.
      *
      * @return den Wert von ek.
+     * @see Main#printProduct(java.util.ArrayList)
+     * @see Verwaltung#geschenkListeGenerieren(String, double)
+     * @see Warenkorb#getWert()
      */
     public double getEK() {
     	return this.einkaufPreis;
@@ -68,6 +71,10 @@ package de.ba_supermarkt;
      * Diese Methode gibt den Wert von vk zurück.
      *
      * @return den Wert von vk.
+     * @see Main#printProduct(java.util.ArrayList)
+     * @see Verwaltung#geschenkListeGenerieren(String, double)
+     * @see Verwaltung#warenEinfuegen(int)
+     * @see Warenkorb#getWert()
      */
     public double getVK() {
     	return this.verkaufPreis;
@@ -77,15 +84,20 @@ package de.ba_supermarkt;
      * Diese Methode gibt den Inhalt von name zurück.
      *
      * @return den Inhalt von name.
+     * @see Main#printProduct(java.util.ArrayList)
+     * @see Main#warenKaufen()
+     * @see Verwaltung#geschenkListeGenerieren(String, double)
+     * @see Verwaltung#warenEinfuegen(int)
+     * @see #toString()
      */
     public String getName() {
     	return this.name;
     }
     
     /**
-     * Dies ist die toString-Methode der Methode getName.
+     * Überschreibung der to-String Methode für die vereinfachte Ausgabe im Konsole.
      *
-     * @return den Inhalt von name.
+     * @return name die Name der Ware
      */
     @Override
     public String toString() {

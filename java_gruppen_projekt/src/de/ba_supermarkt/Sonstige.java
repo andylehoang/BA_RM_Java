@@ -20,7 +20,7 @@ public class Sonstige extends Waren {
 	/**
 	 * Dies ist der Konstruktor der Klasse Sonstige.
      * Die Attribute name, EK und VK werden von der Klasse Waren vererbt.
-     * Das Attribute name, EK, VK und FSK werden initialisiert.
+     * Die Attribute name, EK, VK und FSK werden initialisiert.
 	 *
 	 * @param name der Name des Objektes.
 	 * @param EK der Einkaufpreis des Objektes.
