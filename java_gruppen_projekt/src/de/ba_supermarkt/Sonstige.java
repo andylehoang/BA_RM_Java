@@ -6,9 +6,10 @@ package de.ba_supermarkt;
 
 // TODO: Auto-generated Javadoc
 /**
- * @author Andy Le Hoang, Niels Bohr und Julian Schleich.
+ * 
  * Dies ist die Klasse Sonstige. Die Produkte mit der Kategorie Sonstige sollen als Objekte dieser Klasse Sonstige erstellt werden.
- * @see Bei der Klasse Sonstige handelt es sich um eine Tochterklasse der Klasse Waren.
+ * 
+ * @author Andy Le Hoang, Niels Bohr und Julian Schleich.
  */
 public class Sonstige extends Waren {
 	
@@ -26,6 +27,7 @@ public class Sonstige extends Waren {
 	 * @param EK der Einkaufpreis des Objektes.
      * @param VK der Verkaufspreis des Objektes.
 	 * @param FSK der FSK des Objektes.
+	 * @see Verwaltung#lagerAuffuellen()
 	 */
 	public Sonstige(String name, double EK, double VK, int FSK) {
 		super(name,EK,VK);

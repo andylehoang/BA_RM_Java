@@ -132,7 +132,7 @@ public class Warenkorb {
     	 *
     	 * @see Main#ausgewaehlteWarenkorbGreifen()
     	 */
-    	public void getLaegsteMindesthaltbarkeitsdatum()  {
+    	public void getLaengsteMindesthaltbarkeitsdatum()  {
 	    	long htage = -1;
 	    	int index = -1;
 	    	for(Waren ware: this.myWaren) {

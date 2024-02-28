@@ -27,7 +27,7 @@ public class Verwaltung {
    private Warenkorb ausgewaehlteWarenkorb;
    
    /** Summiert die Gesamtausgaben des Kunden im Supermarkt für den Tag. */
-   private static double tagesAusgabe = 0;
+   private double tagesAusgabe = 0;
    
    
 
@@ -290,7 +290,7 @@ public class Verwaltung {
     * @return tagesAusgabe
     */
    public double getTagesAusgabe(){
-	   return tagesAusgabe;
+	   return this.tagesAusgabe;
    }
    
    /**

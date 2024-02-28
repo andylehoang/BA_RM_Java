@@ -22,7 +22,7 @@ public class Main {
 	 
 
 	/**
-	 * Die Applikation wird in der `main`-Methode eingeführt. Dabei erscheint die Benutzerschnittstelle in der Konsole. Abhängig von der Eingabe des Benutzers wird die entsprechende Geschäftslogik ausgeführt. Zusätzlich existiert ein Mechanismus zur Überprüfung fehlerhafter Eingaben, der es dem Benutzer ermöglicht, eine neue Eingabe gemäß den angegebenen Richtlinien anzufordern. Darüber hinaus wird die Instanz für die Verwaltung initialisiert, um die Applikation zu steuern. Am Ende der Laufzeit der Applikation wird die gesamte Ausgabe vom Kunde angezeigt.
+	 * Die Applikation wird in der `main`-Methode eingefuehrt. Dabei erscheint die Benutzerschnittstelle in der Konsole. Abhängig von der Eingabe des Benutzers wird die entsprechende Geschäftslogik ausgeführt. Zusätzlich existiert ein Mechanismus zur Überprüfung fehlerhafter Eingaben, der es dem Benutzer ermöglicht, eine neue Eingabe gemäß den angegebenen Richtlinien anzufordern. Darüber hinaus wird die Instanz für die Verwaltung initialisiert, um die Applikation zu steuern. Am Ende der Laufzeit der Applikation wird die gesamte Ausgabe vom Kunde angezeigt.
 	 *
 	 * @param args die Argumente
 	 */
@@ -30,7 +30,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		myVerwaltung = new Verwaltung();
 		boolean exit = false;
-		System.out.println("Wilkommen zu BA Supermarkt");
+		System.out.println("Willkommen zu BA Supermarkt");
 		
 		
 		while(!exit){
@@ -281,7 +281,7 @@ public class Main {
 		clear();
 		Warenkorb auswahl = myVerwaltung.getAusgewaehlteWarenkorb();
 		System.out.println("Warbenkorb: " + auswahl+ "\n");
-		auswahl.getLaegsteMindesthaltbarkeitsdatum();
+		auswahl.getLaengsteMindesthaltbarkeitsdatum();
 		auswahl.getGeringsteRecyclingAnteil();
 		produktAusstellen(auswahl.getMeineWaren());
 		System.out.println("\n Summe: "+ auswahl.getWert());
