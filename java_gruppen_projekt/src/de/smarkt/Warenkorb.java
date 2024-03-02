@@ -1,14 +1,14 @@
 /*
  * 
  */
-package de.ba_supermarkt;
+package de.smarkt;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 
 // TODO: Auto-generated Javadoc
 /**
- * Diese Klasse bildet die Warenkorb ab. Sie enthält alle wichtige Eigenschaften eines virtuellen Warenkorbs und beinhaltet die vom Kunde gekaufte Waren.
+ * Diese Klasse bildet die Warenkorb ab. Sie enthaelt alle wichtige Eigenschaften eines virtuellen Warenkorbs und beinhaltet die vom Kunde gekaufte Waren.
  * 
  * @author Andy Le Hoang
  */
@@ -50,11 +50,11 @@ public class Warenkorb {
 	   }
 	   
    	/**
-   	 * Den Konstruktor überladen. Istanziert einen neuer Warenkorb mit festgelegten Geschenkbetrag
+   	 * Instanziert einen neuer Warenkorb mit festgelegten Geschenkbetrag
    	 *
    	 * @param kategorie die Kategorie vom Warenkorben in Form einer String
-   	 * @param warenGeschenk die Liste von Waren, die für die Geschenkoption generiert wird
-   	 * @param betrag die erwünschte Summe aller Waren innerhalb dieses Geschenkwarenkorbs.
+   	 * @param warenGeschenk die Liste von Waren, die fuer die Geschenkoption generiert wird
+   	 * @param betrag die erwuenschte Summe aller Waren innerhalb dieses Geschenkwarenkorbs.
    	 * @see Verwaltung#addWarenkorb(String, double)
    	 */
    	public Warenkorb(String kategorie, ArrayList<Waren> warenGeschenk, double betrag) {
@@ -67,11 +67,11 @@ public class Warenkorb {
 	   }
 	    
 	    /**
-    	 * Gibt die Kategorie des Warenkorbs zurück
+    	 * Gibt die Kategorie des Warenkorbs zurueck
     	 *
     	 * @return die Kategorie des Warenkorbs
     	 * @see Verwaltung#warenEinfuegen(int)
-    	 * @see Main#printProduct(ArrayList)
+    	 * @see Main#produktAusstellen(ArrayList)
     	 * @see Main#viewAllWarenkorben()
     	 * 
     	 */
@@ -80,7 +80,7 @@ public class Warenkorb {
 	    }
 	    
 	    /**
-    	 * Gibt die Liste von eingefügten Waren zurück
+    	 * Gibt die Liste von eingefuegten Waren zurueck
     	 *
     	 * @return die Liste myWaren
     	 * @see Verwaltung#warenEntfernen(int)
@@ -94,9 +94,9 @@ public class Warenkorb {
 	    }
 	    
 	    /**
-    	 * Gibt den Gesamtwert des Warenkorbs zurück
+    	 * Gibt den Gesamtwert des Warenkorbs zurueck
     	 *
-    	 * @return den Wert
+    	 * @return den Gesamtwert des Warenkorbs
     	 * @see Verwaltung#bezahlenLogik(int)
     	 * @see Main#viewAllWarenkorben()
     	 * @see Main#ausgewaehlteWarenkorbGreifen()
@@ -117,9 +117,9 @@ public class Warenkorb {
 	    
 	    
 	    /**
-    	 * Überschreibt die toString-Methode, damit man den Instanz im Konsole vereinfacht  als String ausgeben lassen kann
+    	 * Ueberschreibt die toString-Methode, damit man den Instanz im Konsole vereinfacht  als String ausgeben lassen kann
     	 *
-    	 * @return überblickende Beschreibung des Warenkorbs
+    	 * @return uebersichtliche Beschreibung des Warenkorbs
     	 * @see Main#viewAllWarenkorben()
     	 */
     	@Override
@@ -128,7 +128,7 @@ public class Warenkorb {
 	    }
 	    
 	    /**
-    	 * Sucht die Waren mit dem längste Mindesthaltbarkeitdatum und gibt sie dann im Konsole aus.
+    	 * Sucht die Waren mit dem laengste Mindesthaltbarkeitdatum und gibt sie dann im Konsole aus.
     	 *
     	 * @see Main#ausgewaehlteWarenkorbGreifen()
     	 */
@@ -150,7 +150,7 @@ public class Warenkorb {
 	    	}
 	    	
 	    	if(htage != -1 && index != -1 ) {
-	    		System.out.println("Längste Mindesthaltbarkeitsdatum: " + htage + "| Produkt : " + this.myWaren.get(index));
+	    		System.out.println("Längste Mindesthaltbarkeitsdatum: " + htage + " Tage | Produkt : " + this.myWaren.get(index));
 	    	}
 	    }
 	    
@@ -172,7 +172,7 @@ public class Warenkorb {
 	    	}
 	    	
 	    	if(anteile != 10000 && index != -1 ) {
-	    		System.out.println("geringste Recyclinganteile: " + anteile + "| Produkt : " + this.myWaren.get(index));
+	    		System.out.println("geringste Recyclinganteile: " + anteile + "% | Produkt : " + this.myWaren.get(index));
 	    	}
 	    	
 	    }
@@ -186,6 +186,18 @@ public class Warenkorb {
     	public void warenEntfernen(int index) {
 	    	this.myWaren.remove(index);
 	    }
+    	
+    	
+    /**
+     * Gibt die zurueck, ob dieser Warenkorb mit eine Geschenkoption gewaehlt wird.
+     * @return den Status fuer die Geschenkoption
+     * @see Main#ausgewaehlteWarenkorbGreifen()
+     * @see Main#menuDrucken()
+     * @see Main#main(String[])
+     */
+    	public boolean getGeschenkStatus() {
+    		return this.geschenk;
+    	}
 	    
 	   
 	    

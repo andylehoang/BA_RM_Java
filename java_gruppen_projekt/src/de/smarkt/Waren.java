@@ -1,7 +1,7 @@
 /*
  * 
  */
-package de.ba_supermarkt;
+package de.smarkt;
 
  // TODO: Auto-generated Javadoc
 /**
@@ -9,32 +9,28 @@ package de.ba_supermarkt;
   * Dies ist die Klasse Waren. Diese Klasse ist die Mutterklasse der Klassen Haushaltsartikel, Lebensmittel und Sonstige.
   *   
   */
- public class Waren {
+abstract class Waren {
 	
-	/** Das Attribut counter wird deklariert.
-   *  Das Attribut counter ist für das Vergeben der ID nötig. 
-   */
+	/**Das Attribut counter ist für das Vergeben der ID noetig. */
 	private static int counter= 0;
     
-    /** Das Attribut id wird deklariert.
-     *  Das Attribut id ist die einmalige id jedes Objektes. 
-     */
+    /** Das Attribut id ist die Identifikationsnummer jedes Objektes. */
     private int id;
     
-    /** Die Attribute einkaufPreis und verkaufPreis werden deklariert.
-     *  Das Attribut einkaufPreis ist der Einkaufspreis.
-     *  Das Attribut verkaufPreis ist der Verkaufspreis.
+    /** 
+     *  Das Attribut einkaufPreis ist der Einkaufspreis des Waren.
+     *  Das Attribut verkaufPreis ist der Verkaufspreis des Waren.
      */
     private double einkaufPreis, verkaufPreis;
     
-    /** Das Attribut name wird deklariert. 
-     *  Das Attribut name ist der Name.
+    /**  
+     *  Das Attribut name ist der Name des Waren.
      */
     private String name;
     
     /**
      * Dies ist der Konstruktor der Klasse Waren.
-     * Das Attribute name, EK und VK werden initialisiert.
+     * 
      * @param name der Name des Objektes.
      * @param EK der Einkaufpreis des Objektes.
      * @param VK der Verkaufspreis des Objektes.
@@ -49,9 +45,9 @@ package de.ba_supermarkt;
     
     
     /**
-     * Diese Methode gibt den Wert von ek zurück.
+     * Diese Methode gibt den Wert vom Einkaufspreis zurueck.
      *
-     * @return den Wert von ek.
+     * @return den Einkaufspreis der Ware.
      * @see Main#produktAusstellen(java.util.ArrayList)
      * @see Verwaltung#geschenkListeGenerieren(String, double)
      * @see Warenkorb#getWert()
@@ -61,9 +57,9 @@ package de.ba_supermarkt;
     }
     
     /**
-     * Diese Methode gibt den Wert von vk zurück.
+     * Diese Methode gibt den Wert vom Verkaufspreis zurueck.
      *
-     * @return den Wert von vk.
+     * @return den Verkaufspreis der Ware.
      * @see Main#produktAusstellen(java.util.ArrayList)
      * @see Verwaltung#geschenkListeGenerieren(String, double)
      * @see Verwaltung#warenEinfuegen(int)
@@ -74,7 +70,7 @@ package de.ba_supermarkt;
     }
     
     /**
-     * Diese Methode gibt den Inhalt von name zurück.
+     * Diese Methode gibt den Inhalt von name zurueck.
      *
      * @return den Inhalt von name.
      * @see Main#produktAusstellen(java.util.ArrayList)
@@ -88,9 +84,9 @@ package de.ba_supermarkt;
     }
     
     /**
-     * Überschreibung der to-String Methode für die vereinfachte Ausgabe im Konsole.
+     * Ueberschreibung der to-String Methode fuer die vereinfachte Ausgabe im Konsole.
      *
-     * @return name die Name der Ware
+     * @return die Name der Ware
      */
     @Override
     public String toString() {

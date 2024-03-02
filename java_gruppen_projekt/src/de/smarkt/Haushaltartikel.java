@@ -1,7 +1,7 @@
 /*
  * 
  */
-package de.ba_supermarkt;
+package de.smarkt;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -14,8 +14,8 @@ package de.ba_supermarkt;
 public class Haushaltartikel extends Waren{
 	
 	/** 
-     * Das Attribut reycclingAnteil wird deklariert.
-     * Dieses Attribut ist der Recyclinganteil.
+     * 
+     * Dieses Attribut ist der Recyclinganteil der Ware.
      */
 	private int recylingAnteil;
 	
@@ -37,9 +37,9 @@ public class Haushaltartikel extends Waren{
     }
     
     /**
-     * Diese Methode gibt den Wert von recyclingAnteil zurück.
+     * Diese Methode gibt den Wert von recyclingAnteil zurueck.
      *
-     * @return den Wert von recyclingAnteil. 
+     * @return den Wert von Recycling-Anteil. 
      * @see Warenkorb#getGeringsteRecyclingAnteil()
      */
     public int getRecylingAnteile() {

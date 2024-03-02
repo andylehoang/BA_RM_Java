@@ -1,20 +1,20 @@
 /*
  * 
  */
-package de.ba_supermarkt;
+package de.smarkt;
 
 import java.util.*;
 
 
 // TODO: Auto-generated Javadoc
 /**
- * Die Main Klasse interagiert mit dem Kunde via eine User Interface in der Konsole und behandelt die eingegebene Daten, damit die zu der Verwaltung weitergeleitet werden.
+ * Die Main-Klasse interagiert mit dem Kunden ueber eine Benutzeroberflaeche in der Konsole und verarbeitet die eingegebenen Daten, bevor sie an die Verwaltung weitergeleitet werden.
  * 
  * @author Andy Le Hoang
  */
 public class Main {
 	 
-	 /** Die Instanz für die Verwaltung wird deklariert. */
+	 /** Die Instanz fuer die Verwaltung wird deklariert. */
  	private static Verwaltung myVerwaltung;
 	 
  	/** Ein Scanner-Objekt wird zur Einlesung von Kundeneingaben initialisiert. */
@@ -22,7 +22,7 @@ public class Main {
 	 
 
 	/**
-	 * Die Applikation wird in der `main`-Methode eingefuehrt. Dabei erscheint die Benutzerschnittstelle in der Konsole. Abhängig von der Eingabe des Benutzers wird die entsprechende Geschäftslogik ausgeführt. Zusätzlich existiert ein Mechanismus zur Überprüfung fehlerhafter Eingaben, der es dem Benutzer ermöglicht, eine neue Eingabe gemäß den angegebenen Richtlinien anzufordern. Darüber hinaus wird die Instanz für die Verwaltung initialisiert, um die Applikation zu steuern. Am Ende der Laufzeit der Applikation wird die gesamte Ausgabe vom Kunde angezeigt.
+	 * Die Applikation wird in der `main`-Methode eingefuehrt. Dabei erscheint die Benutzerschnittstelle in der Konsole. Abhaengig von der Eingabe des Benutzers wird die entsprechende Geschaeftslogik ausgefuehrt. Zusaetzlich existiert ein Mechanismus zur Ueberpruefung fehlerhafter Eingaben, der es dem Benutzer ermoeglicht, eine neue Eingabe gemaess den angegebenen Richtlinien anzufordern. Darueber hinaus wird die Instanz fuer die Verwaltung initialisiert, um die Applikation zu steuern. Am Ende der Laufzeit der Applikation wird die gesamte Ausgabe vom Kunde angezeigt.
 	 *
 	 * @param args die Argumente
 	 */
@@ -39,12 +39,12 @@ public class Main {
 	    		produktAusstellen(myVerwaltung.getMeineWaren());
 	    		menuDrucken();
 	    	    String input = sc.next();
-	    	   //Check if input is valid
-	    	    while(!input.equalsIgnoreCase("a") && !input.equalsIgnoreCase("w") && !input.equalsIgnoreCase("s") && !input.equalsIgnoreCase("g") && !input.equalsIgnoreCase("e") && !input.equalsIgnoreCase("b") && !input.equalsIgnoreCase("k")) {
+	    	   //Prüfen, ob die Eingabe gültig ist
+	    	    while(!input.equalsIgnoreCase("a") && !input.equalsIgnoreCase("w") && !input.equalsIgnoreCase("s") && !input.equalsIgnoreCase("g") && !input.equalsIgnoreCase("e") && !input.equalsIgnoreCase("b") && (!input.equalsIgnoreCase("k") || (input.equalsIgnoreCase("k") && myVerwaltung.getAusgewaehlteWarenkorb().getGeschenkStatus()))) {
 	    	    	System.out.println("Falsche Eingabe. Bitte nochmal versuchen");
 	    	    	input = sc.next();
 	    	    }
-	    	    //Check if user want to exit
+	    	    //Prüfen, ob der Benutzer aussteigen möchte
 		          if(input.equalsIgnoreCase("a")) {
 		        	  menuAddWarenkorb();
 		          } else if(input.equalsIgnoreCase("k")) {
@@ -88,7 +88,7 @@ public class Main {
 	
 	
 	/**
-	 * Das Menu für die einzelnen Funktionen wird ausgedruckt
+	 * Das Menu fuer die einzelnen Funktionen wird ausgedruckt
 	 * 
 	 * @see #main(String[])
 	 */
@@ -96,12 +96,17 @@ public class Main {
 		System.out.println("-----------------------------------------------------");
 		System.out.println("Aktuelle Warenkorb: " + myVerwaltung.getAusgewaehlteWarenkorb());
 		System.out.println("-----------------------------------------------------");
-		System.out.println("Funktionmenu: [A]dd neuer Warenkorb | [W]echseln Warenkorb; | [S]ehe alle Warenkoerbe | [G]reifen Information von aktuellen Warenkorb  | [K]aufen | [B]ezahlen | [E]xit" );
+		if(myVerwaltung.getAusgewaehlteWarenkorb().getGeschenkStatus()) {
+			System.out.println("Funktionmenu: [A]dd neuer Warenkorb | [W]echseln Warenkorb; | [S]ehe alle Warenkoerbe | [G]reifen Information von aktuellen Warenkorb  | [B]ezahlen | [E]xit" );
+		}else {
+			System.out.println("Funktionmenu: [A]dd neuer Warenkorb | [W]echseln Warenkorb; | [S]ehe alle Warenkoerbe | [G]reifen Information von aktuellen Warenkorb  | [K]aufen | [B]ezahlen | [E]xit" );
+		}
+		
 		System.out.println("-----------------------------------------------------");		
 	}
 	
 	/**
-	 * Drückt die Liste von Waren in einer geordnete Tabelle aus. 
+	 * Druckt die Liste von Waren in einer geordnete Tabelle aus. 
 	 * 
 	 * @see #main(String[])
 	 * @see #ausgewaehlteWarenkorbGreifen()
@@ -131,7 +136,7 @@ public class Main {
 	
 	
 	/**
-	 * Die Menu für die Kategorien und Auswahl für die Feststellung der Geschenkoption von Warenkorb ausdrucken. Die Eingabe von Kunde wird geprüft. Danach wird die passende Daten für die Erstellung einer neue Warenkorb Objekt verwendet. 
+	 * Die Menu fuer die Kategorien und Auswahl fuer die Feststellung der Geschenkoption von Warenkorb ausdrucken. Die Eingabe von Kunde wird geprueft. Danach wird die passende Daten fuer die Erstellung einer neue Warenkorb Objekt verwendet. 
 	 * 
 	 * @see #main(String[])
 	 */
@@ -185,7 +190,7 @@ public class Main {
 	}
 	
 	/**
-	 * Der Logik für das Einfügen von Ware im Warenkorb wird durchgeführt. Aber zuerst muss die Eingabe zur Auswahl der gewünschten Ware überprüft.
+	 * Der Logik fuer das Einfuegen von Ware im Warenkorb wird durchgefuehrt. Aber zuerst muss die Eingabe zur Auswahl der gewuenschten Ware ueberprueft.
 	 * 
 	 * @see #main(String[])
 	 */
@@ -208,14 +213,14 @@ public class Main {
 	}
 	
 	/**
-	 * Ein Überblick von aller vom Kunde erstellten Warenkörbe wird in einer Tabelle dargestellt.
+	 * Ein Ueberblick von aller vom Kunde erstellten Warenkoerbe wird in einer Tabelle dargestellt.
 	 * 
 	 * @see #main(String[])
 	 * @see #warenkorbWechseln()
 	 * @see #bezahlen()
 	 */
 	public static void viewAllWarenkorben() {
-		System.out.println("| ID |        Kategorie       | Gesamtwert");
+		System.out.println("| ID |            Kategorie         | Gesamtwert");
 		System.out.println("-------------------------------------------");
 		String line = "";
 		for (int i = 0; i< myVerwaltung.getWarbenkorben().size(); i++) {
@@ -224,7 +229,7 @@ public class Main {
 			line += ((i+1)<10) ? "  ": " ";
 			// Abstand für Kategorie
 			line += "|   "+ myVerwaltung.getWarbenkorben().get(i);
-			for (int x = 0; x <= 20 - myVerwaltung.getWarbenkorben().get(i).toString().length(); x++) {
+			for (int x = 0; x <= 26 - myVerwaltung.getWarbenkorben().get(i).toString().length(); x++) {
 				line += " ";
 			}
 			// Abstand für Preis
@@ -234,7 +239,7 @@ public class Main {
 	}
 	
 	/**
-	 * Der Logik für das Wechseln von verschiedene Warenkörbe wird durchgeführt, nachdem der Kunde feststellt, welchen Warenkorb er möchte.
+	 * Der Logik fuer das Wechseln von verschiedene Warenkoerbe wird durchgefuehrt, nachdem der Kunde feststellt, welchen Warenkorb er moechte.
 	 * 
 	 * @see #main(String[])
 	 */
@@ -251,7 +256,7 @@ public class Main {
 	}
 	
 	/**
-	 * Der Logik von der Bezahlungsvorgang für die vom Kunde ausgewählten Warenkorb wird durchgeführt. 
+	 * Der Logik von der Bezahlungsvorgang fuer die vom Kunde ausgewaehlten Warenkorb wird durchgefuehrt. 
 	 * 
 	 * @see #main(String[])
 	 */
@@ -273,25 +278,41 @@ public class Main {
 	}
 	
 	/**
-	 * Zugriff auf den momentan ausgewählte Warenkorb. Die besondere Eigenschaften von Waren im Warenkorb werden angezeigt. Funktionen wie Warenkorb direkt bezahlen, Warenkorb entfernen und zurückspringen wird dem Kunden angebote. Diese werden nach Eingabe von Kunde durchgeführt. Status Meldung werden am Ende angezeigt.
+	 * Zugriff auf den momentan ausgewaehlte Warenkorb. Die besondere Eigenschaften von Waren im Warenkorb werden angezeigt. Funktionen wie Warenkorb direkt bezahlen, Warenkorb entfernen und zurueckspringen wird dem Kunden angebote. Diese werden nach Eingabe von Kunde durchgefuehrt. Status Meldung werden am Ende angezeigt.
 	 * 
 	 * @see #main(String[])
 	 */
 	public static void ausgewaehlteWarenkorbGreifen() {
 		clear();
+		//Zwischen Speicher für den ausgewählten Warenkorb innitalisieren
 		Warenkorb auswahl = myVerwaltung.getAusgewaehlteWarenkorb();
 		System.out.println("Warbenkorb: " + auswahl+ "\n");
+		
+		//Besonderes Eigenschaften von Waren im Warenkorb ausdrucken
 		auswahl.getLaengsteMindesthaltbarkeitsdatum();
 		auswahl.getGeringsteRecyclingAnteil();
+		System.out.println("\n");
+		
+		// Alle Waren im ausgewählten Warenkorb in einer Tabelle ausstellen
 		produktAusstellen(auswahl.getMeineWaren());
-		System.out.println("\n Summe: "+ auswahl.getWert());
+		System.out.println("\n Summe: "+ auswahl.getWert() + " €");
 		System.out.println("------------------------------------------");
-		System.out.println("Funktionmenu: [V]erlassen | [E]ntfernen | [B]ezahlen" );
+		
+		// Funktionsmenu für Geschenkoption anpassen. Nutzer sollt nicht in der Lage sein, den Stand des Geschenkwarenkorb zu ändern.
+		if(auswahl.getGeschenkStatus()) {
+			System.out.println("Funktionmenu: [V]erlassen | [B]ezahlen" );
+		} else {
+			System.out.println("Funktionmenu: [V]erlassen | [E]ntfernen | [B]ezahlen" );
+		}
+		
+		// Eingabe überprüfen
 		String option = sc.next();
-		 while(!option.equalsIgnoreCase("v") && !option.equalsIgnoreCase("e") && !option.equalsIgnoreCase("b")) {
+		 while(!option.equalsIgnoreCase("v") && (!option.equalsIgnoreCase("e") || (option.equalsIgnoreCase("e") && auswahl.getGeschenkStatus()))  && !option.equalsIgnoreCase("b")) {
 	 	    	System.out.println("Wrong input. Please try again");
 	 	    	option = sc.next();
 	 	    }
+		 
+		 // Logik für jeder gültiger Eingabe durchspielen
 		if(option.equalsIgnoreCase("b")) {
 			int index = myVerwaltung.getWarbenkorben().indexOf(auswahl);
 			clear();
@@ -320,7 +341,7 @@ public class Main {
 	}
 	
 	/**
-	 * 50 leere Zeile für das Entleeren der Konsole generieren.
+	 * 50 leere Zeile fuer das Entleeren der Konsole generieren.
 	 * @see #main(String[])
 	 * @see #ausgewaehlteWarenkorbGreifen()  
 	 * @see #bezahlen()

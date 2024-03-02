@@ -1,7 +1,7 @@
 /*
  * 
  */
-package de.ba_supermarkt;
+package de.smarkt;
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -18,7 +18,7 @@ import java.time.temporal.ChronoUnit;
  */
 public class Lebensmittel extends Waren{
 	
-	/** Das Attribut mindesthaltbarkeitDatum wird deklariert.
+	/** 
 	 * 	Das Attribut mindesthaltbarkeitDatum ist das Mindesthaltbarkeitsdatum.
 	 */
 	private String mindesthaltbarkeitDatum; 
@@ -54,7 +54,7 @@ public class Lebensmittel extends Waren{
 
         // Datum zu String parsen
 		
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // Specify the date format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // Datum Format spezifizieren
         LocalDate date = LocalDate.parse(this.mindesthaltbarkeitDatum, formatter);
 
         // Delta von jetzt zum Mindesthaltbarkeitdatum berechnen

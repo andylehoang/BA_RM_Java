@@ -1,7 +1,7 @@
 /*
  * 
  */
-package de.ba_supermarkt;
+package de.smarkt;
 
 
 // TODO: Auto-generated Javadoc

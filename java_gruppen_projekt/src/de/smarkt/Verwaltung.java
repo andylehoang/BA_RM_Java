@@ -1,7 +1,7 @@
 /*
  * 
  */
-package de.ba_supermarkt;
+package de.smarkt;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,23 +10,23 @@ import java.util.ArrayList;
 
 // TODO: Auto-generated Javadoc
 /**
+ * Die Verwaltung fungiert als Betreiber des Programms, indem sie die vom Kunden bereitgestellten Eingabedaten entgegennimmt, die entsprechende Geschaeftslogik ausfuehrt und zentral Daten speichert und verwaltet, die fuer den Betrieb des Programms erforderlich sind.
  * 
  * @author Andy Le Hoang.
- * Die Verwaltung fungiert als Betreiber des Programms, indem sie die vom Kunden bereitgestellten Eingabedaten entgegennimmt, die entsprechende Geschäftslogik ausführt und zentral Daten speichert und verwaltet, die für den Betrieb des Programms erforderlich sind.
  * @see Main#main(String[])
  */
 public class Verwaltung {
    
-   /**  Verwaltet alle Warenkörbe, die von Kunden erstellt wurden */
+   /**  Verwaltet alle Warenkoerbe, die von Kunden erstellt wurden */
    private ArrayList<Warenkorb> Warenkorben;
    
    /**  Liste der angebotenen Waren im Supermarkt  */
    private ArrayList<Waren> meineWaren;
    
-   /**  Zwischenspeicher für den vom Kunden ausgewählten Warenkorb.*/
+   /**  Zwischenspeicher fuer den vom Kunden ausgewaehlten Warenkorb.*/
    private Warenkorb ausgewaehlteWarenkorb;
    
-   /** Summiert die Gesamtausgaben des Kunden im Supermarkt für den Tag. */
+   /** Summiert die Gesamtausgaben des Kunden im Supermarkt fuer den Tag. */
    private double tagesAusgabe = 0;
    
    
@@ -35,7 +35,7 @@ public class Verwaltung {
    /**
     * Instanziert eine neue Verwaltung Objekt. 
     * Die Attribute Warenkorben wird initalisiert.
-    * Die Attribute meineWaren wird durch die Funktion lagerAuffuelen mit 12 Waren Objekt befüllt.
+    * Die Attribute meineWaren wird durch die Funktion lagerAuffuelen mit 12 Waren Objekt befuellt.
     * Eine normale Waren, ohne Besonderheiten, wird als Default gesetzt.
     * @see Main
     */
@@ -48,10 +48,10 @@ public class Verwaltung {
    }
    
    /**
-    * Einen neue Warenkorb erstellen und die Warenkorben Liste hinzufügen.
+    * Einen neue Warenkorb erstellen und die Warenkorben Liste hinzufuegen.
     *
-    * @param kategorie die Kategorie für das Warenkorb 
-    * @param geschenkBetrag die Höhe des Geldbetrags für den Warenkorb mit Geschenkoptionen.
+    * @param kategorie die Kategorie fuer das Warenkorb 
+    * @param geschenkBetrag die Hoehe des Geldbetrags fuer den Warenkorb mit Geschenkoptionen.
     * @see #Verwaltung()
     * @see Main#menuAddWarenkorb()
     * @see #warenEntfernen(int)
@@ -68,12 +68,12 @@ public class Verwaltung {
    
    /**
     * 
-    * Generiert eine Liste von Waren bis zur Höhe des gegebenen Betrags unter Berücksichtigung verschiedener Kategorienbeschränkungen.
+    * Generiert eine Liste von Waren bis zur Hoehe des gegebenen Betrags unter Beruecksichtigung verschiedener Kategorienbeschraenkungen.
     *
-    * @param kategorie the kategorie
-    * @param summeBetrag the summe betrag
+    * @param kategorie die Kategorie
+    * @param summeBetrag die Betragssumme
     * @see #addWarenkorb(String, double)
-    * @return die Liste von Waren 
+    * @return Die Liste von Waren 
     */
    public ArrayList<Waren> geschenkListeGenerieren(String kategorie, double summeBetrag) {
 	   double betrag = summeBetrag;
@@ -108,7 +108,7 @@ public class Verwaltung {
     * @see Main#viewAllWarenkorben()
     * @see Main#warenkorbWechseln()
     * @see Main#bezahlen()
-    * @return die warbenkorben
+    * @return Die Warbenkoerbe
     */
    public ArrayList<Warenkorb> getWarbenkorben(){
 	   return this.Warenkorben;
@@ -118,14 +118,14 @@ public class Verwaltung {
     * Extrahiert die Produktdaten aus der Supermarkt.CSV-Datei.
     * 
     * @see #lagerAuffuellen()
-    * @return eine ArrayList aus listen von Strings
+    * @return Eine Liste von Produktdatensaetzen.
     */
    public ArrayList<String[]> readCSV() {
 	   // Daten von CSV Datei einlesen
 	   ArrayList<String[]> daten = new ArrayList<String[]>();
 
 
-       String file = "../java_gruppen_projekt/src/de/ba_supermarkt/Supermarkt.CSV"; // ..\\Rohdaten Supermarkt.CSV  java_gruppen_projekt/src/de/ba_supermarkt/Supermarkt.CSV
+       String file = "../java_gruppen_projekt/src/de/smarkt/Supermarkt.CSV"; 
        BufferedReader reader = null;
        String line = "";
 
@@ -156,9 +156,9 @@ public class Verwaltung {
    
    
    /**
-    * Konvertiert die extrahierten Daten aus der CSV-Datei und erstellt für jedes Produkt ein entsprechendes Objekt, das dann der Attribute 'meineWaren' hinzugefügt wird.
+    * Konvertiert die extrahierten Daten aus der CSV-Datei und erstellt fuer jedes Produkt ein entsprechendes Objekt, das dann der Attribute 'meineWaren' hinzugefuegt wird.
     * @see #Verwaltung()
-    * @return  Liste der angebotenen Produkte in Form von ArrayList<Waren>
+    * @return  Liste der angebotenen Produkte 
     */
    public ArrayList<Waren> lagerAuffuellen() {
 	   ArrayList<Waren> meineWaren = new ArrayList<Waren>();
@@ -201,11 +201,11 @@ public class Verwaltung {
    
    
    /**
-    * Fügt die gewunschte Waren in die ausgewählt Warenkorb hinzu.
+    * Fuegt die gewunschte Waren in die ausgewaehlt Warenkorb hinzu.
     *
     * @param id der Index der Ware aus der meineWaren-Liste
     * @see Main#warenKaufen()
-    * @return true, wenn Ware erfolgreich eingefügt wird
+    * @return true, wenn Ware erfolgreich eingefuegt wird
     */
    public boolean warenEinfuegen(int id) {
 	   boolean status = true;
@@ -232,7 +232,7 @@ public class Verwaltung {
    }
    
    /**
-    * Führt den Bezahlungsvorgang für den gewünschten Warenkorb durch und entfernt diesen Warenkorb aus der Liste.
+    * Fuehrt den Bezahlungsvorgang fuer den gewuenschten Warenkorb durch und entfernt diesen Warenkorb aus der Liste.
     *
     * @param index von der Warenkorb in der Liste
     * @see Main#bezahlen()
@@ -253,7 +253,7 @@ public class Verwaltung {
     * Warenkorb aus der Warkorben Liste entfernen.
     * 
     * @see #bezahlenLogik(int)
-    * @param index vom gewünschten Warenkorb
+    * @param index vom gewuenschten Warenkorb
     */
    public void warenkorbEntfernen(int index) {
 	   this.Warenkorben.remove(index);
@@ -265,9 +265,9 @@ public class Verwaltung {
    }
    
    /**
-    * Waren aus der vom Kunde vorher ausgewählte Warenkorb entfernen
+    * Waren aus der vom Kunde vorher ausgewaehlte Warenkorb entfernen
     *
-    * @param int index vom Waren in der Waren-Liste vom ausgewäehlten Warenkorb 
+    * @param warenIndex Index vom Waren in der Waren-Liste vom ausgewaehlten Warenkorb 
     * @see Main#ausgewaehlteWarenkorbGreifen() 
     * @return true, wenn Warenkorb nicht leer ist und die Ware erfolgreich entfernt wird.
     */
@@ -284,34 +284,36 @@ public class Verwaltung {
    
    
    /**
-    * Zugriff auf die gesamte Ausgabe vom Kunde für den Tag
+    * Zugriff auf die gesamte Ausgabe vom Kunde fuer den Tag
     * 
     * @see Main#main(String[])
-    * @return tagesAusgabe
+    * @return Die Tagesausgabe
     */
    public double getTagesAusgabe(){
 	   return this.tagesAusgabe;
    }
    
    /**
-    * Zugriff auf die vom Kunde ausgewählte Warenkorb
+    * Zugriff auf die vom Kunde ausgewaehlte Warenkorb
     * 
     * @see Main#produktAusstellen(ArrayList)
     * @see Main#warenKaufen()
     * @see Main#ausgewaehlteWarenkorbGreifen()
-    * @return ausgewaehlte Warenkorb
+    * @see Main#main(String[])
+    * @see Main#menuDrucken()
+    * @return Der ausgewaehlte Warenkorb
     */
    public Warenkorb getAusgewaehlteWarenkorb() {
 	   return this.ausgewaehlteWarenkorb;
    }
    
   /**
-   * Zu einem neuen Warenkorb aus der Liste der Warenkörbe wechseln.
+   * Zu einem neuen Warenkorb aus der Liste der Warenkoerbe wechseln.
    * 
    * @see Main#warenkorbWechseln()
    * @see #addWarenkorb(String, double)
    * @see #warenkorbEntfernen(int)
-   * @param index vom gewünschten Warenkorb
+   * @param index vom gewuenschten Warenkorb
    */
   public void setWarenkorb(int index) {
 	  this.ausgewaehlteWarenkorb = this.Warenkorben.get(index);
@@ -322,7 +324,7 @@ public class Verwaltung {
    *
    * @see Main#main(String[])
    * @see Main#warenKaufen()
-   * @return die Liste der angebotenen Produkte
+   * @return Die Liste der angebotenen Produkte
    */
   public ArrayList<Waren> getMeineWaren(){
 	  return this.meineWaren;
