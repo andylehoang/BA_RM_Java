@@ -40,18 +40,18 @@ public class Main {
 	    		menuDrucken();
 	    	    String input = sc.next();
 	    	   //Prüfen, ob die Eingabe gültig ist
-	    	    while(!input.equalsIgnoreCase("a") && !input.equalsIgnoreCase("w") && !input.equalsIgnoreCase("s") && !input.equalsIgnoreCase("i") && !input.equalsIgnoreCase("e") && !input.equalsIgnoreCase("b") && (!input.equalsIgnoreCase("k") || (input.equalsIgnoreCase("k") && myVerwaltung.getAusgewaehlteWarenkorb().getGeschenkStatus()))) {
+	    	    while(!input.equalsIgnoreCase("n") && !input.equalsIgnoreCase("w") && !input.equalsIgnoreCase("a") && !input.equalsIgnoreCase("i") && !input.equalsIgnoreCase("v") && !input.equalsIgnoreCase("b") && (!input.equalsIgnoreCase("k") || (input.equalsIgnoreCase("k") && myVerwaltung.getAusgewaehlteWarenkorb().getGeschenkStatus()))) {
 	    	    	System.out.println("Falsche Eingabe. Bitte nochmal versuchen");
 	    	    	input = sc.next();
 	    	    }
 	    	    //Prüfen, ob der Benutzer aussteigen möchte
-		          if(input.equalsIgnoreCase("a")) {
+		          if(input.equalsIgnoreCase("n")) {
 		        	  menuAddWarenkorb();
 		          } else if(input.equalsIgnoreCase("k")) {
 		        	 warenKaufen();
 		          } else if(input.equalsIgnoreCase("w")){
 		        	  warenkorbWechseln();
-		          } else if(input.equalsIgnoreCase("s")){
+		          } else if(input.equalsIgnoreCase("a")){
 		        	  clear();
 		        	  viewAllWarenkorben();
 		       	      System.out.println("[Z]urück");
@@ -97,9 +97,9 @@ public class Main {
 		System.out.println("Aktuelle Warenkorb: " + myVerwaltung.getAusgewaehlteWarenkorb());
 		System.out.println("-----------------------------------------------------");
 		if(myVerwaltung.getAusgewaehlteWarenkorb().getGeschenkStatus()) {
-			System.out.println("Funktionsmenü: [A]dd neuer Warenkorb | [W]echseln Warenkorb; | [S]ehen alle Warenkörbe | [I]nformation von aktuellen Warenkorb  | [B]ezahlen | [E]xit" );
+			System.out.println("Funktionsmenü: [N]euen Warenkorb hinzufügen | [W]arbenkorb wechseln | [A]lle Warenkörbe anzeigen | [I]nformation zu aktuellem Warenkorb  | [B]ezahlen | [V]erlassen" );
 		}else {
-			System.out.println("Funktionsmenü: [A]dd neuer Warenkorb | [W]echseln Warenkorb; | [S]ehen alle Warenkörbe | [I]nformation von aktuellen Warenkorb  | [K]aufen | [B]ezahlen | [E]xit" );
+			System.out.println("Funktionsmenü: [N]euen Warenkorb hinzufügen | [W]arbenkorb wechseln | [A]lle Warenkörbe anzeigen | [I]nformation zu aktuellem Warenkorb  | [K]aufen | [B]ezahlen | [V]erlassen" );
 		}
 		
 		System.out.println("-----------------------------------------------------");		
