@@ -30,7 +30,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		myVerwaltung = new Verwaltung();
 		boolean exit = false;
-		System.out.println("Willkommen zu BA Supermarkt");
+		System.out.println("Willkommen zu Smarkt");
 		
 		
 		while(!exit){
@@ -40,7 +40,7 @@ public class Main {
 	    		menuDrucken();
 	    	    String input = sc.next();
 	    	   //Prüfen, ob die Eingabe gültig ist
-	    	    while(!input.equalsIgnoreCase("a") && !input.equalsIgnoreCase("w") && !input.equalsIgnoreCase("s") && !input.equalsIgnoreCase("g") && !input.equalsIgnoreCase("e") && !input.equalsIgnoreCase("b") && (!input.equalsIgnoreCase("k") || (input.equalsIgnoreCase("k") && myVerwaltung.getAusgewaehlteWarenkorb().getGeschenkStatus()))) {
+	    	    while(!input.equalsIgnoreCase("a") && !input.equalsIgnoreCase("w") && !input.equalsIgnoreCase("s") && !input.equalsIgnoreCase("i") && !input.equalsIgnoreCase("e") && !input.equalsIgnoreCase("b") && (!input.equalsIgnoreCase("k") || (input.equalsIgnoreCase("k") && myVerwaltung.getAusgewaehlteWarenkorb().getGeschenkStatus()))) {
 	    	    	System.out.println("Falsche Eingabe. Bitte nochmal versuchen");
 	    	    	input = sc.next();
 	    	    }
@@ -54,7 +54,7 @@ public class Main {
 		          } else if(input.equalsIgnoreCase("s")){
 		        	  clear();
 		        	  viewAllWarenkorben();
-		       	      System.out.println("[Z]urueck");
+		       	      System.out.println("[Z]urück");
 		       	      input = sc.next();
 		       	      while(!input.equalsIgnoreCase("z")) {
 		       		    System.out.println("Falsche Eingabe. Bitte nochmal versuchen");
@@ -63,7 +63,7 @@ public class Main {
 		       	      clear();
 		          }else if(input.equalsIgnoreCase("b")){
 		        	  bezahlen();
-		          }else if(input.equalsIgnoreCase("g")){
+		          }else if(input.equalsIgnoreCase("i")){
 		        	  ausgewaehlteWarenkorbGreifen();
 		          }else {
 		        	  exit = true;
@@ -97,9 +97,9 @@ public class Main {
 		System.out.println("Aktuelle Warenkorb: " + myVerwaltung.getAusgewaehlteWarenkorb());
 		System.out.println("-----------------------------------------------------");
 		if(myVerwaltung.getAusgewaehlteWarenkorb().getGeschenkStatus()) {
-			System.out.println("Funktionmenu: [A]dd neuer Warenkorb | [W]echseln Warenkorb; | [S]ehe alle Warenkoerbe | [G]reifen Information von aktuellen Warenkorb  | [B]ezahlen | [E]xit" );
+			System.out.println("Funktionsmenü: [A]dd neuer Warenkorb | [W]echseln Warenkorb; | [S]ehen alle Warenkörbe | [I]nformation von aktuellen Warenkorb  | [B]ezahlen | [E]xit" );
 		}else {
-			System.out.println("Funktionmenu: [A]dd neuer Warenkorb | [W]echseln Warenkorb; | [S]ehe alle Warenkoerbe | [G]reifen Information von aktuellen Warenkorb  | [K]aufen | [B]ezahlen | [E]xit" );
+			System.out.println("Funktionsmenü: [A]dd neuer Warenkorb | [W]echseln Warenkorb; | [S]ehen alle Warenkörbe | [I]nformation von aktuellen Warenkorb  | [K]aufen | [B]ezahlen | [E]xit" );
 		}
 		
 		System.out.println("-----------------------------------------------------");		
@@ -128,7 +128,7 @@ public class Main {
 			}
 			//Abstand für Preis
 			line += "| ";
-			line += (myVerwaltung.getAusgewaehlteWarenkorb().getKategorie().equalsIgnoreCase("Mitarbeiterprogramm"))? ware.getEK(): ware.getVK();
+			line += (myVerwaltung.getAusgewaehlteWarenkorb().getKategorie().equalsIgnoreCase("Mitarbeiterkaufprogramm"))? ware.getEK(): ware.getVK();
 			line += "\n";
 		}
 	   System.out.print(line);
@@ -143,7 +143,7 @@ public class Main {
 	public static void menuAddWarenkorb() {
 		String kategorie = "";
 		double geschenkBetrag = 0;
-		System.out.println("Bitte eingeben: [Sp]ar-Korb | [M]itarbeiterprogramm | [U]18 | [O]eko-Prinzip | [D]efault");
+		System.out.println("Bitte eingeben: [Sp]ar-Korb | [M]itarbeiterkaufprogramm | [U]18 | [O]eko-Prinzip | [D]efault");
 		kategorie = sc.next();
 		
 		//Prüfen ob die eingabe stimmt
@@ -155,7 +155,7 @@ public class Main {
 		if(kategorie.equalsIgnoreCase("Sp")) {
 			kategorie = "Spar-Korb";
 		} else if (kategorie.equalsIgnoreCase("M")) {
-			kategorie = "Mitarbeiterprogramm";
+			kategorie = "Mitarbeiterkaufprogramm";
 		} else if(kategorie.equalsIgnoreCase("U")){
 			kategorie = "U18";
 		} else if(kategorie.equalsIgnoreCase("O")){
@@ -220,20 +220,20 @@ public class Main {
 	 * @see #bezahlen()
 	 */
 	public static void viewAllWarenkorben() {
-		System.out.println("| ID |            Kategorie         | Gesamtwert");
+		System.out.println("| ID |              Kategorie           | Gesamtwert");
 		System.out.println("-------------------------------------------");
 		String line = "";
-		for (int i = 0; i< myVerwaltung.getWarbenkorben().size(); i++) {
+		for (int i = 0; i< myVerwaltung.getWarbenkoerbe().size(); i++) {
 			// Abstand für ID
 			line += "| "+ (i+1) ;
 			line += ((i+1)<10) ? "  ": " ";
 			// Abstand für Kategorie
-			line += "|   "+ myVerwaltung.getWarbenkorben().get(i);
-			for (int x = 0; x <= 26 - myVerwaltung.getWarbenkorben().get(i).toString().length(); x++) {
+			line += "|   "+ myVerwaltung.getWarbenkoerbe().get(i);
+			for (int x = 0; x <= 30 - myVerwaltung.getWarbenkoerbe().get(i).toString().length(); x++) {
 				line += " ";
 			}
 			// Abstand für Preis
-			line += "|   "+ myVerwaltung.getWarbenkorben().get(i).getWert() + "\n";
+			line += "|   "+ myVerwaltung.getWarbenkoerbe().get(i).getWert() + "\n";
 		}
 		System.out.print(line);
 	}
@@ -247,7 +247,7 @@ public class Main {
 		viewAllWarenkorben();
 		System.out.println("Bitte wählen Sie den gewünschten Index für den Warenkorb");
 		int index = sc.nextInt();
-		while(index< 0 || index>myVerwaltung.getWarbenkorben().size()) {
+		while(index< 0 || index>myVerwaltung.getWarbenkoerbe().size()) {
 			System.out.println("Falsche Eingabe. Bitte nochmal versuchen");
 			index = sc.nextInt();
 		}
@@ -265,7 +265,7 @@ public class Main {
 		viewAllWarenkorben();
 		System.out.println("Für welchen Warenkorb möchten Sie bezahlen? Bitte wählen Sie die ID des Wagens");
 		int warenkorb_id = sc.nextInt();
-		while(warenkorb_id < 1 || warenkorb_id > myVerwaltung.getWarbenkorben().size()) {
+		while(warenkorb_id < 1 || warenkorb_id > myVerwaltung.getWarbenkoerbe().size()) {
 			System.out.println("Falsche Eingabe. Bitte nochmal versuchen");
 			warenkorb_id = sc.nextInt();
 		}
@@ -300,21 +300,21 @@ public class Main {
 		
 		// Funktionsmenu für Geschenkoption anpassen. Nutzer sollt nicht in der Lage sein, den Stand des Geschenkwarenkorb zu ändern.
 		if(auswahl.getGeschenkStatus()) {
-			System.out.println("Funktionmenu: [V]erlassen | [B]ezahlen" );
+			System.out.println("Funktionsmenü: [V]erlassen | [B]ezahlen" );
 		} else {
-			System.out.println("Funktionmenu: [V]erlassen | [E]ntfernen | [B]ezahlen" );
+			System.out.println("Funktionsmenü: [V]erlassen | [E]ntfernen | [B]ezahlen" );
 		}
 		
 		// Eingabe überprüfen
 		String option = sc.next();
 		 while(!option.equalsIgnoreCase("v") && (!option.equalsIgnoreCase("e") || (option.equalsIgnoreCase("e") && auswahl.getGeschenkStatus()))  && !option.equalsIgnoreCase("b")) {
-	 	    	System.out.println("Wrong input. Please try again");
+	 	    	System.out.println("Falsche Eingabe. Bitte nochmal versuchen");
 	 	    	option = sc.next();
 	 	    }
 		 
 		 // Logik für jeder gültiger Eingabe durchspielen
 		if(option.equalsIgnoreCase("b")) {
-			int index = myVerwaltung.getWarbenkorben().indexOf(auswahl);
+			int index = myVerwaltung.getWarbenkoerbe().indexOf(auswahl);
 			clear();
 			if(!myVerwaltung.bezahlenLogik(index)) {
 				System.out.println("Warenkorb war leer");

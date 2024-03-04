@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Verwaltung {
    
    /**  Verwaltet alle Warenkoerbe, die von Kunden erstellt wurden */
-   private ArrayList<Warenkorb> Warenkorben;
+   private ArrayList<Warenkorb> Warenkoerbe;
    
    /**  Liste der angebotenen Waren im Supermarkt  */
    private ArrayList<Waren> meineWaren;
@@ -40,7 +40,7 @@ public class Verwaltung {
     * @see Main
     */
    public Verwaltung() {
-	   this.Warenkorben = new ArrayList<Warenkorb>();
+	   this.Warenkoerbe = new ArrayList<Warenkorb>();
 	   this.meineWaren= this.lagerAuffuellen();
 	   
 	   //set default Warenkorb
@@ -58,10 +58,10 @@ public class Verwaltung {
     */
    public void addWarenkorb(String kategorie, double geschenkBetrag) {
 	   if(geschenkBetrag == 0) {
-		   this.Warenkorben.add(new Warenkorb(kategorie));
-		   this.setWarenkorb(this.Warenkorben.size()-1);
+		   this.Warenkoerbe.add(new Warenkorb(kategorie));
+		   this.setWarenkorb(this.Warenkoerbe.size()-1);
 	   } else {
-		   this.Warenkorben.add(new Warenkorb(kategorie,this.geschenkListeGenerieren(kategorie, geschenkBetrag),geschenkBetrag));
+		   this.Warenkoerbe.add(new Warenkorb(kategorie,this.geschenkListeGenerieren(kategorie, geschenkBetrag),geschenkBetrag));
 	   }
 	     
    }
@@ -89,7 +89,7 @@ public class Verwaltung {
 					   continue;
 				   }
 			   }
-			   double delta = (kategorie.equalsIgnoreCase("Mitarbeiterprogramm"))? betrag - ware.getEK(): betrag - ware.getVK();
+			   double delta = (kategorie.equalsIgnoreCase("Mitarbeiterkaufprogramm"))? betrag - ware.getEK(): betrag - ware.getVK();
 			   if(delta > 0) {
 				   GeschenkList.add(ware);
 				   betrag -= (betrag - delta);
@@ -110,8 +110,8 @@ public class Verwaltung {
     * @see Main#bezahlen()
     * @return Die Warbenkoerbe
     */
-   public ArrayList<Warenkorb> getWarbenkorben(){
-	   return this.Warenkorben;
+   public ArrayList<Warenkorb> getWarbenkoerbe(){
+	   return this.Warenkoerbe;
    }
    
    /**
@@ -239,9 +239,9 @@ public class Verwaltung {
     * @return true, wenn der Wert vom Warenkorb nicht 0 ist.
     */
    public boolean bezahlenLogik(int index) {
-	   double warenkorbSumme = this.Warenkorben.get(index).getWert();
+	   double warenkorbSumme = this.Warenkoerbe.get(index).getWert();
 	   if(warenkorbSumme != 0) {
-		   tagesAusgabe += warenkorbSumme;
+		   this.tagesAusgabe += warenkorbSumme;
 		   this.warenkorbEntfernen(index);
 		   return true;
 	   } else {
@@ -256,8 +256,8 @@ public class Verwaltung {
     * @param index vom gewuenschten Warenkorb
     */
    public void warenkorbEntfernen(int index) {
-	   this.Warenkorben.remove(index);
-	   if(this.Warenkorben.isEmpty()) {
+	   this.Warenkoerbe.remove(index);
+	   if(this.Warenkoerbe.isEmpty()) {
 		   this.addWarenkorb("Standard", 0);
 	   } else {
 		   this.setWarenkorb(0);
@@ -290,7 +290,9 @@ public class Verwaltung {
     * @return Die Tagesausgabe
     */
    public double getTagesAusgabe(){
-	   return this.tagesAusgabe;
+	   // Das Ergebnis aufrunden, damit keine Nachkommastellen nach dem 2. gezeigt werden. 
+	   double roundOff = Math.round(this.tagesAusgabe * 100.0) / 100.0;
+   	   return roundOff;
    }
    
    /**
@@ -313,10 +315,10 @@ public class Verwaltung {
    * @see Main#warenkorbWechseln()
    * @see #addWarenkorb(String, double)
    * @see #warenkorbEntfernen(int)
-   * @param index vom gewuenschten Warenkorb
+   * @param index der Index vom gewuenschten Warenkorb
    */
   public void setWarenkorb(int index) {
-	  this.ausgewaehlteWarenkorb = this.Warenkorben.get(index);
+	  this.ausgewaehlteWarenkorb = this.Warenkoerbe.get(index);
   }
   
   /**
@@ -337,7 +339,7 @@ public class Verwaltung {
    * @return letzte Warenkorb
    */
   public Warenkorb getLetzte() {
-	  return this.Warenkorben.get(this.Warenkorben.size()-1);
+	  return this.Warenkoerbe.get(this.Warenkoerbe.size()-1);
   }
     
 }

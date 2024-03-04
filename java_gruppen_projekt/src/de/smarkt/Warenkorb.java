@@ -106,7 +106,7 @@ public class Warenkorb {
             if(!this.geschenk) {
             	double value = 0.0;
     	    	for(Waren ware: myWaren) {
-    	    		value += (this.kategorie.equalsIgnoreCase("Mitarbeiterprogramm"))? ware.getEK(): ware.getVK();
+    	    		value += (this.kategorie.equalsIgnoreCase("Mitarbeiterkaufprogramm"))? ware.getEK(): ware.getVK();
     	    	}
     	    	this.wert = value;
             }
