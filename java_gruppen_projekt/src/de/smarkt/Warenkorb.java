@@ -178,7 +178,7 @@ public class Warenkorb {
 	    }
 	    
 	    /**
-    	 * Waren aus der myWaren-Liste entfernen.
+    	 * Entfernt die Ware aus der Liste 'myWaren'.
     	 *
     	 * @param index den Index von der Ware in der Liste
     	 * @see Verwaltung#warenEntfernen(int)
@@ -189,7 +189,7 @@ public class Warenkorb {
     	
     	
     /**
-     * Gibt die zurueck, ob dieser Warenkorb mit eine Geschenkoption gewaehlt wird.
+     * Gibt den Status zurueck, ob dieser Warenkorb mit eine Geschenkoption gewaehlt wird.
      * @return den Status fuer die Geschenkoption
      * @see Main#ausgewaehlteWarenkorbGreifen()
      * @see Main#menuDrucken()

@@ -6,7 +6,8 @@ package de.smarkt;
  // TODO: Auto-generated Javadoc
 /**
   * @author Andy LeHoang, Niels Bohr und Julian Schleich.
-  * Dies ist die Klasse Waren. Diese Klasse ist die Mutterklasse der Klassen Haushaltsartikel, Lebensmittel und Sonstige.
+  * 
+  * Dies ist die abstrakte Klasse Waren. Diese Klasse ist die Mutterklasse der Klassen Haushaltsartikel, Lebensmittel und Sonstige.
   *   
   */
 abstract class Waren {
@@ -29,7 +30,7 @@ abstract class Waren {
     private String name;
     
     /**
-     * Dies ist der Konstruktor der Klasse Waren.
+     * Definiert die Intialisierung der Attribute 'name', 'EK', 'VK' und 'id'
      * 
      * @param name der Name des Objektes.
      * @param EK der Einkaufpreis des Objektes.
@@ -45,7 +46,7 @@ abstract class Waren {
     
     
     /**
-     * Diese Methode gibt den Wert vom Einkaufspreis zurueck.
+     * Gibt den Einkaufspreis zurueck.
      *
      * @return den Einkaufspreis der Ware.
      * @see Main#produktAusstellen(java.util.ArrayList)
@@ -57,7 +58,7 @@ abstract class Waren {
     }
     
     /**
-     * Diese Methode gibt den Wert vom Verkaufspreis zurueck.
+     * Gibt den Verkaufspreis zurueck.
      *
      * @return den Verkaufspreis der Ware.
      * @see Main#produktAusstellen(java.util.ArrayList)
@@ -70,9 +71,9 @@ abstract class Waren {
     }
     
     /**
-     * Diese Methode gibt den Inhalt von name zurueck.
+     * Gibt den Namen der Ware zurueck.
      *
-     * @return den Inhalt von name.
+     * @return den Namen der Ware
      * @see Main#produktAusstellen(java.util.ArrayList)
      * @see Main#warenKaufen()
      * @see Verwaltung#geschenkListeGenerieren(String, double)
@@ -84,9 +85,9 @@ abstract class Waren {
     }
     
     /**
-     * Ueberschreibung der to-String Methode fuer die vereinfachte Ausgabe im Konsole.
+     * Ueberschreibt der to-String Methode fuer die vereinfachte Ausgabe im Konsole.
      *
-     * @return die Name der Ware
+     * @return den Namen der Ware
      */
     @Override
     public String toString() {

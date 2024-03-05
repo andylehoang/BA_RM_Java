@@ -6,23 +6,18 @@ package de.smarkt;
 // TODO: Auto-generated Javadoc
 /**
  * 
- * Dies ist die Klasse Haushaltsartikel. Die Produkte mit der Kategorie Haushaltsartikel sollen als Objekte dieser Klasse Haushaltsartikel erstellt werden.
+ *Dies ist die Klasse 'Haushaltartikel'. Produkte mit der Kategorie 'Haushaltartikel' sollen als Objekte dieser Klasse erstellt werden. Es handelt sich hier um eine Tochterklasse der abstrakten Klasse 'Waren'.
  * 
  * 
  * @author Andy LeHoang, Niels Bohr und Julian Schleich.  
  */
 public class Haushaltartikel extends Waren{
 	
-	/** 
-     * 
-     * Dieses Attribut ist der Recyclinganteil der Ware.
-     */
+	/**  Der Recyclinganteil der Ware. */
 	private int recylingAnteil;
 	
     /**
-     * Dies ist der Konstruktor der Klasse Haushaltartikel.
-     * Die Attribute name, EK und VK werden von der Klasse Waren vererbt.
-     * Das Attribute name, EK, VK und recyclingAnteil werden initialisiert. 
+     * Instanziiert ein neues Haushaltartikel-Objekt. Die Attribute 'name' , 'EK' und 'VK' werden von der Klasse Waren vererbt. Das Attribute 'name', 'EK', 'VK' und 'recyclingAnteil' werden initialisiert. 
      * 
      * 
      * @param name der Name des Objektes.
@@ -37,9 +32,9 @@ public class Haushaltartikel extends Waren{
     }
     
     /**
-     * Diese Methode gibt den Wert von recyclingAnteil zurueck.
+     * Gibt den Wert von 'recyclingAnteil' zurueck.
      *
-     * @return den Wert von Recycling-Anteil. 
+     * @return den Recycling-Anteil der Ware 
      * @see Warenkorb#getGeringsteRecyclingAnteil()
      */
     public int getRecylingAnteile() {

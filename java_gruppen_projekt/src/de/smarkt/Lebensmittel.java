@@ -12,21 +12,17 @@ import java.time.temporal.ChronoUnit;
 // TODO: Auto-generated Javadoc
 /**
  * 
- * Dies ist die Klasse Lebensmittel. Die Produkte mit der Kategorie Lebensmittel sollen als Objekte dieser Klasse Lebensmittel erstellt werden.
+ * Dies ist die Klasse 'Lebensmittel'. Produkte mit der Kategorie 'Lebensmittel' sollen als Objekte dieser Klasse erstellt werden. Es handelt sich hier um eine Tochterklasse der abstrakten Klasse 'Waren'
  * 
  * @author Andy LeHoang, Niels Bohr und Julian Schleich.
  */
 public class Lebensmittel extends Waren{
 	
-	/** 
-	 * 	Das Attribut mindesthaltbarkeitDatum ist das Mindesthaltbarkeitsdatum.
-	 */
+	/** das Mindesthaltbarkeitsdatum des Lebensmittels. */
 	private String mindesthaltbarkeitDatum; 
    
 	/**
-	 * Dies ist der Konstruktor der Klasse Lebensmittel.
-     * Die Attribute name, EK und VK werden von der Klasse Waren vererbt.
-     * Das Attribute name, EK, VK und datum werden initialisiert. 
+	 * Instanziiert ein neues Lebensmittel-Objekt. Die Attribute 'name' , 'EK' und 'VK' werden von der Klasse Waren vererbt. Das Attribute 'name', 'EK', 'VK' und 'mindesthaltbarkeitDatum' werden initialisiert.
      * 
      * 
      * @param name der Name des Objektes.
@@ -43,7 +39,7 @@ public class Lebensmittel extends Waren{
 	/**
 	 * Berechnet, wie viele Tage bis zum Verfallsdatum verbleiben
 	 *
-	 * @return die Differenz
+	 * @return die Tage bis zum Ablaufdatum
 	 * @throws ParseException die Parse Exception
 	 * 
 	 * @see Warenkorb#getLaengsteMindesthaltbarkeitsdatum()

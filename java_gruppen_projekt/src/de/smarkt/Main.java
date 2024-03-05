@@ -88,7 +88,7 @@ public class Main {
 	
 	
 	/**
-	 * Das Menu fuer die einzelnen Funktionen wird ausgedruckt
+	 * Druckt das Menue fuer die einzelnen Funktionen aus.
 	 * 
 	 * @see #main(String[])
 	 */
@@ -136,7 +136,7 @@ public class Main {
 	
 	
 	/**
-	 * Die Menu fuer die Kategorien und Auswahl fuer die Feststellung der Geschenkoption von Warenkorb ausdrucken. Die Eingabe von Kunde wird geprueft. Danach wird die passende Daten fuer die Erstellung einer neue Warenkorb Objekt verwendet. 
+	 * Druckt das Menue fuer die Kategorien und die Auswahl fuer die Feststellung der Geschenkoptionen vom Warenkorb aus. Die Eingabe des Nutzers wird ueberprueft. Danach werden die passenden Daten fuer die Erstellung eines neuen Warenkorb-Objekts verwendet.
 	 * 
 	 * @see #main(String[])
 	 */
@@ -190,7 +190,7 @@ public class Main {
 	}
 	
 	/**
-	 * Der Logik fuer das Einfuegen von Ware im Warenkorb wird durchgefuehrt. Aber zuerst muss die Eingabe zur Auswahl der gewuenschten Ware ueberprueft.
+	 * Fuehrt die Logik fuer das Einfuegen der Ware im Warenkorb aus. Aber zuerst muss die Eingabe zur Auswahl der gewuenschten Ware ueberprueft werden.
 	 * 
 	 * @see #main(String[])
 	 */
@@ -213,7 +213,7 @@ public class Main {
 	}
 	
 	/**
-	 * Ein Ueberblick von aller vom Kunde erstellten Warenkoerbe wird in einer Tabelle dargestellt.
+	 * Stellt einen Ueberblick aller vom Nutzer erstellten Warenkoerbe in einer Tabelle dar.
 	 * 
 	 * @see #main(String[])
 	 * @see #warenkorbWechseln()
@@ -239,7 +239,7 @@ public class Main {
 	}
 	
 	/**
-	 * Der Logik fuer das Wechseln von verschiedene Warenkoerbe wird durchgefuehrt, nachdem der Kunde feststellt, welchen Warenkorb er moechte.
+	 * Fuehrt die Logik fuer das Wechseln zwischen verschiedenen Warenkoerben aus, nachdem der Nutzer festgestellt hat, welchen Warenkorb er moechte.
 	 * 
 	 * @see #main(String[])
 	 */
@@ -256,7 +256,7 @@ public class Main {
 	}
 	
 	/**
-	 * Der Logik von der Bezahlungsvorgang fuer die vom Kunde ausgewaehlten Warenkorb wird durchgefuehrt. 
+	 * Fuehrt die Logik von der Bezahlungsvorgang fuer die vom Kunde ausgewaehlten Warenkorb aus. 
 	 * 
 	 * @see #main(String[])
 	 */
@@ -278,7 +278,7 @@ public class Main {
 	}
 	
 	/**
-	 * Zugriff auf den momentan ausgewaehlte Warenkorb. Die besondere Eigenschaften von Waren im Warenkorb werden angezeigt. Funktionen wie Warenkorb direkt bezahlen, Warenkorb entfernen und zurueckspringen wird dem Kunden angebote. Diese werden nach Eingabe von Kunde durchgefuehrt. Status Meldung werden am Ende angezeigt.
+	 * Greift auf den momentan ausgewaehlten Warenkorb zu. Die besonderen Eigenschaften der Waren im Warenkorb werden angezeigt. Funktionen wie direktes Bezahlen des Warenkorbs, Entfernen des Warenkorbs und Zurueckspringen werden dem Nutzer angeboten.  
 	 * 
 	 * @see #main(String[])
 	 */
@@ -341,7 +341,7 @@ public class Main {
 	}
 	
 	/**
-	 * 50 leere Zeile fuer das Entleeren der Konsole generieren.
+	 * Generiert 50 leere Zeilen zur Bereinigung der Konsole.
 	 * @see #main(String[])
 	 * @see #ausgewaehlteWarenkorbGreifen()  
 	 * @see #bezahlen()
