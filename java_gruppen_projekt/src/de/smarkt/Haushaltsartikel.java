@@ -6,12 +6,12 @@ package de.smarkt;
 // TODO: Auto-generated Javadoc
 /**
  * 
- *Dies ist die Klasse 'Haushaltartikel'. Produkte mit der Kategorie 'Haushaltartikel' sollen als Objekte dieser Klasse erstellt werden. Es handelt sich hier um eine Tochterklasse der abstrakten Klasse 'Waren'.
+ *Dies ist die Klasse 'Haushaltsartikel'. Produkte mit der Kategorie 'Haushaltsartikel' sollen als Objekte dieser Klasse erstellt werden. Es handelt sich hier um eine Tochterklasse der abstrakten Klasse 'Waren'.
  * 
  * 
  * @author Andy LeHoang, Niels Bohr und Julian Schleich.  
  */
-public class Haushaltartikel extends Waren{
+public class Haushaltsartikel extends Waren{
 	
 	/**  Der Recyclinganteil der Ware. */
 	private int recylingAnteil;
@@ -26,7 +26,7 @@ public class Haushaltartikel extends Waren{
      * @param anteile der Recyclinganteil des Objektes.
      * @see Verwaltung#lagerAuffuellen()
      */
-    public Haushaltartikel(String name, double EK, double VK, int anteile) {
+    public Haushaltsartikel(String name, double EK, double VK, int anteile) {
     	super(name,EK,VK);
     	this.recylingAnteil = anteile;
     }

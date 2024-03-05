@@ -163,16 +163,16 @@ public class Warenkorb {
 	    	int anteile = 10000;
 	    	int index = -1;
 	    	for(Waren ware: this.myWaren) {
-	    		if(ware instanceof Haushaltartikel) {
-	    			if(((Haushaltartikel)ware).getRecylingAnteile() <= anteile) {
-						anteile = ((Haushaltartikel)ware).getRecylingAnteile();
+	    		if(ware instanceof Haushaltsartikel) {
+	    			if(((Haushaltsartikel)ware).getRecylingAnteile() <= anteile) {
+						anteile = ((Haushaltsartikel)ware).getRecylingAnteile();
 						index = this.myWaren.indexOf(ware);
 					} 
 	    		} 
 	    	}
 	    	
 	    	if(anteile != 10000 && index != -1 ) {
-	    		System.out.println("geringste Recyclinganteile: " + anteile + "% | Produkt : " + this.myWaren.get(index));
+	    		System.out.println("Geringste Recyclinganteile: " + anteile + "% | Produkt : " + this.myWaren.get(index));
 	    	}
 	    	
 	    }

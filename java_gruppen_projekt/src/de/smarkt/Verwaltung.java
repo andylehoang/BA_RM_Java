@@ -181,7 +181,7 @@ public class Verwaltung {
                pivotVK = Double.parseDouble(daten.get(i)[4]);
                pivotAnteile = Integer.parseInt(daten.get(i)[5]);
 
-               meineWaren.add(new Haushaltartikel(daten.get(i)[2],pivotEK,pivotVK,pivotAnteile));
+               meineWaren.add(new Haushaltsartikel(daten.get(i)[2],pivotEK,pivotVK,pivotAnteile));
 
            }
            else if (daten.get(i)[1].equals(Sonstige)) {
